@@ -1,10 +1,10 @@
-package Model;
+package model;
 
 public class Seller extends User {
     private String bankAccountDetails;
 
-    public Seller(String firstName, String lastName, String username, String bankAccountDetails, int id){
-        super(firstName, lastName, username, id);
+    public Seller(String firstName, String lastName, String email, String bankAccountDetails){
+        super(firstName, lastName, email);
         this.bankAccountDetails = bankAccountDetails;
     }
 

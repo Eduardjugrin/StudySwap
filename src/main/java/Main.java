@@ -1,16 +1,17 @@
-import Model.Note;
-import Model.NoteContainer;
+import DAO.LoginDAOCSV;
+import exception.UserNotFoundException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.Note;
+import model.NoteContainer;
+import model.User;
 
-import java.util.List;
+public class Main{
 
-public class Main extends Application {
-
-    @Override
+/*    @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");
 
@@ -26,25 +27,30 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-    /*
+    }*/
 
 
     static NoteContainer noteContainer = new NoteContainer();
     public static void main(String[] args) {
-        Note note1 = new Note("titolo1", "content1", 1);
-        Note note2 = new Note( "titolo2", "content2", 2);
+        // Crea un'istanza di LoginDAOCSV
+        LoginDAOCSV loginDAO = new LoginDAOCSV();
 
-        noteContainer.addNote(note1);
-        noteContainer.addNote(note2);
+        // Utente di test
+        String testEmail = "test";
+        String testPassword = "testpassword";
 
-        //ottieni e visualizza gli appunti
-        List<Note> allNotes = noteContainer.getNotes();
-        for(Note note : allNotes){
-            System.out.println("Titolo: " + note.getTitle());
-            System.out.println("Contenuto: " + note.getContent());
-            System.out.println("Utente ID: " + note.getUserId());
-            System.out.println("----");
+        try {
+            // Prova ad autenticare l'utente
+            User authenticatedUser = loginDAO.checkUser(testEmail, testPassword);
+
+            // Stampa informazioni sull'utente autenticato
+            System.out.println("User authenticated successfully");
+            System.out.println("Email: " + authenticatedUser.getEmail());
+            System.out.println("Role: " + authenticatedUser.getRole());
+
+        } catch (UserNotFoundException e) {
+            // Gestisci il caso in cui l'utente non viene trovato
+            System.out.println("User not found. Authentication failed.");
         }
-*/
+    }
 }
