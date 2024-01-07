@@ -1,13 +1,11 @@
 import DAO.LoginDAOCSV;
+import exception.AuthorNotFoundException;
 import exception.UserNotFoundException;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import model.Note;
-import model.NoteContainer;
 import model.User;
+import DAO.NoteDAOCSV;
+
+import java.util.List;
 
 public class Main{
 
@@ -28,9 +26,7 @@ public class Main{
     public static void main(String[] args) {
         launch(args);
     }*/
-
-
-    static NoteContainer noteContainer = new NoteContainer();
+    //test login con csv
     public static void main(String[] args) {
         // Crea un'istanza di LoginDAOCSV
         LoginDAOCSV loginDAO = new LoginDAOCSV();
@@ -52,5 +48,50 @@ public class Main{
             // Gestisci il caso in cui l'utente non viene trovato
             System.out.println("User not found. Authentication failed.");
         }
+
+        System.out.println("-*-*-*-*-*-*-*");
+
+        //test notes con csv
+
+        NoteDAOCSV noteDAOCSV = new NoteDAOCSV();
+
+        List<Note> allNotes = noteDAOCSV.getAllNotes();
+
+        if(allNotes.isEmpty()){
+            System.out.println("Nessun appunto trovato");
+        }else{
+            System.out.println("Elenco appunti:");
+            for(Note note: allNotes){
+                System.out.println("Titolo:" + note.getTitle());
+                System.out.println("DataPath:" + note.getPath());
+                System.out.println("Autore: " + note.getAuthor());
+                System.out.println("Prezzo: €" + note.getPrice());
+                System.out.println("-----");
+            }
+        }
+        System.out.println("-*-*-*-*-*-*-*");
+
+        //test notes per autore con csv
+
+        String AUTHOR = "Simone Niro";
+        System.out.println("Libri di: " + AUTHOR);
+        NoteDAOCSV noteDAO = new NoteDAOCSV();
+        try {
+            // Chiamata al metodo getNotesByAuthor per ottenere le note di un autore specifico
+            List<Note> notes = noteDAO.getNotesByAuthor(AUTHOR);
+
+            // Stampa delle note ottenute
+            for (Note note : notes) {
+                System.out.println("Title: " + note.getTitle());
+             /*   System.out.println("Path: " + note.getPath());
+                System.out.println("Author: " + note.getAuthor());
+                System.out.println("Price: " + note.getPrice());
+                System.out.println("---------------");*/
+            }
+        } catch (AuthorNotFoundException e) {
+            // Gestione dell'eccezione se le note non sono trovate
+            System.out.println("Author not found");
+        }
+
     }
 }

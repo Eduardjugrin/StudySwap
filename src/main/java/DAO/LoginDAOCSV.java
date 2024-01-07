@@ -14,7 +14,7 @@ import java.io.IOException;
 //implementazione del LoginDAO usando un vile csv per l'accesso ai dati degli utenti
 public class LoginDAOCSV implements LoginDAO{
     //todo percorso file csv per contenere i dati degli utenti
-    private static final String CSV_FILE_NAME = "src/main/java/org/testdb.csv";
+    private static final String CSV_FILE_NAME = "src/main/java/res/users.csv";
 
     //todo indici delle colonne del file csv
     private static final int EMAIL = 0;

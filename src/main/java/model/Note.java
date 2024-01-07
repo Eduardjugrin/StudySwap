@@ -1,36 +1,38 @@
 package model;
 
 public class Note {
-    private int id;
     private String title;
-    private String content;
-    private int userId;
+    private String path;
+    private String author;
+    private String price;
 
     //necessario per le operazioni di recupero dal db
     public Note(){
 
     }
 
-    public Note ( String title, String content, int userId){
+    public Note ( String title, String path, String userEmail, String price){
         this.title = title;
-        this.content = content;
-        this.userId = userId;
+        this.path = path;
+        this.author = userEmail;
+        this.price = price;
+    }
+
+    public Note(String title){
+        this.title = title;
     }
 
     //metodi getter
-    public int getId(){
-        return (this.id);
-    }
-
     public String getTitle(){
         return (this.title);
     }
 
-    public String getContent(){
-        return (this.content);
+    public String getPath(){
+        return (this.path);
     }
 
-    public int getUserId(){
-        return (this.userId);
+    public String getAuthor(){
+        return (this.author);
     }
+    public String getPrice(){return (this.price);}
 }
