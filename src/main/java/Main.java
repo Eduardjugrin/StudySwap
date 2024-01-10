@@ -1,14 +1,19 @@
+import DAO.LoginDAO;
 import DAO.LoginDAOCSV;
+import DAO.LoginDAOJDBC;
 import exception.AuthorNotFoundException;
 import exception.UserNotFoundException;
 import model.Note;
 import model.User;
 import DAO.NoteDAOCSV;
 
+import java.sql.*;
 import java.util.List;
 
 public class Main{
-
+    private static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/study_swap_db";
+    private static final String USER = "StudySwap";
+    private static final String PASS = "StudySwap";
 /*    @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");
@@ -29,7 +34,7 @@ public class Main{
     //test login con csv
     public static void main(String[] args) {
         // Crea un'istanza di LoginDAOCSV
-        LoginDAOCSV loginDAO = new LoginDAOCSV();
+        LoginDAOCSV loginDAOCSV = new LoginDAOCSV();
 
         // Utente di test
         String testEmail = "test";
@@ -37,7 +42,7 @@ public class Main{
 
         try {
             // Prova ad autenticare l'utente
-            User authenticatedUser = loginDAO.checkUser(testEmail, testPassword);
+            User authenticatedUser = loginDAOCSV.checkUser(testEmail, testPassword);
 
             // Stampa informazioni sull'utente autenticato
             System.out.println("User authenticated successfully");
@@ -93,5 +98,28 @@ public class Main{
             System.out.println("Author not found");
         }
 
+
+        System.out.println("TEST DB:");
+        String email = "bob.jones@example.com";
+        String password = "pass123";
+
+        // Crea un'istanza del tuo DAO JDBC
+        LoginDAO loginDAOJDBC = new LoginDAOJDBC();
+
+        try {
+            // Esegui il check dell'utente
+            User user = loginDAOJDBC.checkUser(email, password);
+
+            // Stampa le informazioni sull'utente
+            if (user != null) {
+                System.out.println("User found:");
+                System.out.println("Email: " + user.getEmail());
+                System.out.println("Role: " + user.getRole());
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (UserNotFoundException e) {
+            System.out.println("User not found.");
+        }
     }
-}
+    }
