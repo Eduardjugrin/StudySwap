@@ -1,0 +1,43 @@
+/*
+#28a745: verde
+#f4f0d2: panna
+*/
+
+BorderPane{
+    -fx-background-color: #f4f0d2;
+}
+.primary-color{
+    -fx-background-color: #ffffff;
+}
+.Label {
+        -fx-font-size: 14;
+        -fx-font-weight: bold;
+}
+
+.TextField, .PasswordField {
+   -fx-font-size: 14;
+   -fx-padding: 0 5 0 5;
+}
+
+.text-input {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #28a745;
+
+    -fx-text-inner-color: #000;
+
+    -fx-highlight-fill: #28a745;
+
+}
+
+
+
+.button {
+    -fx-font-size: 14;
+    -fx-background-color: #28a745;
+    -fx-text-fill: #ffffff;
+}
+
+@font-family{
+}
