@@ -16,31 +16,35 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main {
-//public class Main extends Application {
-//    private static Stage stage;
-//
-//    @Override
-//    public void start(Stage stage) throws Exception{
-//        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/loginPage.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load());
-//        scene.getStylesheets().add(getClass().getResource("/values/style.css").toExternalForm());
-//        setStage(stage);
-//
-//        //configurazione finestra GUI
-//        stage.setTitle("StudySwap");
-//        stage.setResizable(false);
-//        stage.centerOnScreen();
-//        stage.setScene(scene);
-//
-//        stage.show();
-//    }
-//
-//    public static void setStage(Stage stage){
-//        Main.stage = stage;
-//    }
-//
-//}
+//public class Main {
+public class Main extends Application {
+    private static Stage stage;
+
+    @Override
+    public void start(Stage stage) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/loginPage.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(getClass().getResource("/values/style.css").toExternalForm());
+        setStage(stage);
+
+        //configurazione finestra GUI
+        stage.setTitle("StudySwap");
+        stage.setResizable(false);
+        stage.centerOnScreen();
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    public static void setStage(Stage stage){
+        Main.stage = stage;
+    }
+
+    public static Stage getStage(){
+        return stage;
+    }
+
+}
 
     //test login con csv
 //    public static void main(String[] args) {
@@ -110,52 +114,52 @@ public class Main {
 //        }
 //
 //
-    public static void main(String[] args) throws Exception{
-        LoginBean loginBean = new LoginBean("eduard@sample.com", "test456");
-        LoginBean loginBean2 = new LoginBean("simone@sample.com", "test123");
-
-        LoginController loginController = new LoginController();
-        System.out.println("buyer:");
-        try{
-            loginController.checkUser(loginBean);
-
-            loginController.buyerLogin(loginBean);
-
-            Session session = Session.getCurrentSession();
-            if(session != null){
-                System.out.println("    buyer logged in sucesfully:");
-                BuyerBean buyerBean = session.getBuyerBean();
-                System.out.println("    first name:" + buyerBean.getFirstName());
-                System.out.println("    last name:" + buyerBean.getLastName());
-                System.out.println("    last email:" + buyerBean.getEmail());
-                System.out.println("    payment method:" + buyerBean.getPaymentMethod());
-                session.closeSession();
-            }else{
-                System.out.println("buer login failed");
-            }
-        }catch(UserNotFoundException | NotFoundException e){
-            e.printStackTrace();
-        }
-
-        System.out.println("seller:");
-        try{
-            loginController.checkUser(loginBean2);
-
-            loginController.sellerLogin(loginBean2);
-
-            Session session = Session.getCurrentSession();
-            if(session != null){
-                System.out.println("    seller logged in sucesfully:");
-                SellerBean sellerBean = session.getSellerBean();
-                System.out.println("    first name:" + sellerBean.getFirstName());
-                System.out.println("    last name:" + sellerBean.getLastName());
-                System.out.println("    last email:" + sellerBean.getEmail());
-                System.out.println("    payment method:" + sellerBean.getBankAccountDetails());
-            }else{
-                System.out.println("buyer login failed");
-            }
-        }catch(UserNotFoundException | NotFoundException e){
-            e.printStackTrace();
-        }
-    }
-}
+//    public static void main(String[] args) throws Exception{
+//        LoginBean loginBean = new LoginBean("eduard@sample.com", "test456");
+//        LoginBean loginBean2 = new LoginBean("simone@sample.com", "test123");
+//
+//        LoginController loginController = new LoginController();
+//        System.out.println("buyer:");
+//        try{
+//            loginController.checkUser(loginBean);
+//
+//            loginController.buyerLogin(loginBean);
+//
+//            Session session = Session.getCurrentSession();
+//            if(session != null){
+//                System.out.println("    buyer logged in sucesfully:");
+//                BuyerBean buyerBean = session.getBuyerBean();
+//                System.out.println("    first name:" + buyerBean.getFirstName());
+//                System.out.println("    last name:" + buyerBean.getLastName());
+//                System.out.println("    last email:" + buyerBean.getEmail());
+//                System.out.println("    payment method:" + buyerBean.getPaymentMethod());
+//                session.closeSession();
+//            }else{
+//                System.out.println("buer login failed");
+//            }
+//        }catch(UserNotFoundException | NotFoundException e){
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println("seller:");
+//        try{
+//            loginController.checkUser(loginBean2);
+//
+//            loginController.sellerLogin(loginBean2);
+//
+//            Session session = Session.getCurrentSession();
+//            if(session != null){
+//                System.out.println("    seller logged in sucesfully:");
+//                SellerBean sellerBean = session.getSellerBean();
+//                System.out.println("    first name:" + sellerBean.getFirstName());
+//                System.out.println("    last name:" + sellerBean.getLastName());
+//                System.out.println("    last email:" + sellerBean.getEmail());
+//                System.out.println("    payment method:" + sellerBean.getBankAccountDetails());
+//            }else{
+//                System.out.println("buyer login failed");
+//            }
+//        }catch(UserNotFoundException | NotFoundException e){
+//            e.printStackTrace();
+//        }
+//    }
+//}

@@ -9,6 +9,14 @@ BorderPane{
 .primary-color{
     -fx-background-color: #ffffff;
 }
+
+AnchorPane{
+    -fx-background-color: #f4f0d2;
+}
+.primary-color{
+     -fx-background-color: #ffffff;
+}
+
 .Label {
         -fx-font-size: 14;
         -fx-font-weight: bold;
@@ -39,5 +47,17 @@ BorderPane{
     -fx-text-fill: #ffffff;
 }
 
-@font-family{
+.clickableLabel:hover {
+    -fx-text-fill: #3A887C;
+
+    -fx-cursor: hand;
+}
+
+.clickableImageView:hover {
+    -fx-opacity: 0.7;
+
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+
+    -fx-cursor: hand;
 }

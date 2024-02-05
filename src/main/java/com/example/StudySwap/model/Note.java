@@ -1,38 +1,58 @@
 package com.example.StudySwap.model;
 
 public class Note {
-    private String title;
-    private String path;
-    private String author;
-    private String price;
+    private int fileID;
+    private String fileName;
+    private String extension;
+    private byte[] content;
+    private String uploaderEmail;
 
     //necessario per le operazioni di recupero dal db
-    public Note(){
-
+    public Note(String fileName, String extension, byte[] content, String uploaderEmail){
+        this.fileName = fileName;
+        this.extension = extension;
+        this.content = content;
+        this.uploaderEmail = uploaderEmail;
     }
 
-    public Note ( String title, String path, String userEmail, String price){
-        this.title = title;
-        this.path = path;
-        this.author = userEmail;
-        this.price = price;
+
+    public int getFileID() {
+        return fileID;
     }
 
-    public Note(String title){
-        this.title = title;
+    public String getFileName() {
+        return fileName;
     }
 
-    //metodi getter
-    public String getTitle(){
-        return (this.title);
+    public String getExtension() {
+        return extension;
     }
 
-    public String getPath(){
-        return (this.path);
+    public byte[] getContent() {
+        return content;
     }
 
-    public String getAuthor(){
-        return (this.author);
+    public String getUploaderEmail() {
+        return uploaderEmail;
     }
-    public String getPrice(){return (this.price);}
+
+    public void setFileID(int fileID) {
+        this.fileID = fileID;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
+    public void setUploaderEmail(String uploaderEmail) {
+        this.uploaderEmail = uploaderEmail;
+    }
 }

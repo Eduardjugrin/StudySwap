@@ -47,7 +47,6 @@ public class BuyerDAO {
         }catch(SQLException e){
             Printer.printError(e.getMessage());
         }
-
         return buyer;
     }
 

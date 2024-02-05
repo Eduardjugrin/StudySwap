@@ -58,4 +58,12 @@ public class RetrieveQueries {
 
         return preparedStatement.executeQuery();
     }
+
+    public static ResultSet retrieveAllNotes(Connection connection) throws SQLException{
+        String sql = "SELECT * FROM files";
+
+        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+        return preparedStatement.executeQuery();
+    }
 }

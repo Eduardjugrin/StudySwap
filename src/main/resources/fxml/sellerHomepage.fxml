@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Label fx:id="messageText" alignment="CENTER" contentDisplay="CENTER" prefWidth="350.0" prefHeight="97.0" text = "test" textAlignment="CENTER">
+        <font>
+            <Font size="15"/>
+        </font>
+    </Label>
+</AnchorPane>
