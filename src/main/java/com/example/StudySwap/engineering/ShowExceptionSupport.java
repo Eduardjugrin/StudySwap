@@ -18,7 +18,7 @@ public class ShowExceptionSupport {
 
     }
 
-    public static void showException(String message) throws IOException{
+    public static void showException(String message){
         Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initStyle(StageStyle.UNDECORATED);

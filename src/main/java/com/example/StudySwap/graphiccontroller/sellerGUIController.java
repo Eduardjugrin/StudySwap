@@ -7,6 +7,7 @@ import com.example.StudySwap.bean.NoteBean;
 import com.example.StudySwap.bean.SellerBean;
 import com.example.StudySwap.engineering.Printer;
 import com.example.StudySwap.engineering.Session;
+import com.example.StudySwap.engineering.ShowExceptionSupport;
 import com.example.StudySwap.exception.DuplicateNoteException;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.model.Note;
@@ -58,27 +59,35 @@ public class sellerGUIController {
         String sellerEmail = sellerBean.getEmail();
 
         try{
-            //leggere il contenuto del file come array di byte
-            byte[] fileContent = Files.readAllBytes(selectedFile.toPath());
 
-            //creazione dell'oggetto bean con i dati del file
-            NoteBean noteBean = new NoteBean(selectedFile.getName(), getFileExtension(selectedFile.getName()), fileContent, sellerEmail);
+            if(selectedFile == null){
+                ShowExceptionSupport.showException("path non valido");
+            }else{
+                //leggere il contenuto del file come array di byte
+                byte[] fileContent = Files.readAllBytes(selectedFile.toPath());
 
-            //caricamento del file tramite il DAO
-            NoteUploadController noteUploadController = new NoteUploadController();
-            noteUploadController.uploadFile(noteBean, sellerEmail);
+                //creazione dell'oggetto bean con i dati del file
+                NoteBean noteBean = new NoteBean(selectedFile.getName(), getFileExtension(selectedFile.getName()), fileContent, sellerEmail);
 
+                //caricamento del file tramite il DAO
+                NoteUploadController noteUploadController = new NoteUploadController();
+                noteUploadController.uploadFile(noteBean, sellerEmail);
 
-        }catch(IOException | DuplicateNoteException e){
-            Printer.printError(e.getMessage());
+                ShowExceptionSupport.showException("file caricato con successo");
+            }
+
+        }catch(DuplicateNoteException e){
+            ShowExceptionSupport.showException(e.getMessage());
         }
+        catch(IOException e){
+            ShowExceptionSupport.showException(e.getMessage());
+        }
+
     }
 
     private String getFileExtension(String fileName){
         int dotIndex = fileName.lastIndexOf(".");
         return dotIndex == -1 ? "" : fileName.substring(dotIndex + 1);
     }
-
-
 
 }

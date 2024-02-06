@@ -3,6 +3,7 @@ package com.example.StudySwap.DAO;
 import com.example.StudySwap.Connection.ConnectionDB;
 import com.example.StudySwap.DAO.queries.RetrieveQueries;
 import com.example.StudySwap.engineering.Printer;
+import com.example.StudySwap.engineering.ShowExceptionSupport;
 import com.example.StudySwap.exception.DuplicateNoteException;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.model.Note;
@@ -33,13 +34,18 @@ public class NoteDAOJDBC implements NoteDAO{
         Connection connection;
 
         try{
+            connection = ConnectionDB.getConnection();
+
             if(note == null){
                 throw new IllegalArgumentException("Note object cannot be null");
             }
             if(note.getFileName() == null || note.getExtension() == null || note.getContent() == null){
                 throw new IllegalArgumentException("Note object contain null values");
             }
-            connection = ConnectionDB.getConnection();
+            if(fileExists(connection, note.getFileName())){
+                throw new DuplicateNoteException();
+            }
+
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO files (fileName, extension, content, uploaderEmail) VALUES(?, ?, ?, ?)");
                 preparedStatement.setString(1, note.getFileName());
                 preparedStatement.setString(2, note.getExtension());
@@ -89,5 +95,20 @@ public class NoteDAOJDBC implements NoteDAO{
         String uploaderEmail = resultSet.getString(UPLOADER_EMAIL);
 
         return new Note(fileName, extension, content, uploaderEmail);
+    }
+
+    private static boolean fileExists(Connection connection, String fileName) throws SQLException{
+        String sql = "SELECT COUNT(*) FROM files WHERE fileName = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, fileName);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                if(resultSet.next()){
+                    int count = resultSet.getInt(1);
+                    return count > 0;
+                }
+            }
+        }
+        return false;
     }
 }
