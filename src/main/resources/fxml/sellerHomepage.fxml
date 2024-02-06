@@ -9,11 +9,14 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="1000.0"
+            fx:controller="com.example.StudySwap.graphiccontroller.sellerGUIController">
 
-    <Label fx:id="messageText" alignment="CENTER" contentDisplay="CENTER" prefWidth="350.0" prefHeight="97.0" text = "test" textAlignment="CENTER">
-        <font>
-            <Font size="15"/>
-        </font>
-    </Label>
+    <children>
+        <Label layoutX="31.0" layoutY="42.0" text="Seleziona un file PDF da caricare:" />
+        <TextField fx:id="filePathField" layoutX="31.0" layoutY="71.0" prefWidth="250.0" promptText="Nessun file selezionato" />
+        <Button layoutX="298.0" layoutY="71.0" mnemonicParsing="false" onAction="#browseFile" text="Sfoglia..." />
+        <Button layoutX="156.0" layoutY="126.0" mnemonicParsing="false" onAction="#uploadFile" text="Carica File" />
+    </children>
+
 </AnchorPane>

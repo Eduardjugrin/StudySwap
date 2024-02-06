@@ -7,7 +7,8 @@ import com.example.StudySwap.model.Note;
 
 import java.util.List;
 
-public interface NoteDAO {
+public interface NoteDAO{
+
     public List<Note> getAllNotes() throws NotFoundException;
 //    public List<Note> getNotesByAuthor(String author) throws AuthorNotFoundException;
 }

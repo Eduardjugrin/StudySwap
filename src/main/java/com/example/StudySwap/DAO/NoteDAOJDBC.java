@@ -3,11 +3,14 @@ package com.example.StudySwap.DAO;
 import com.example.StudySwap.Connection.ConnectionDB;
 import com.example.StudySwap.DAO.queries.RetrieveQueries;
 import com.example.StudySwap.engineering.Printer;
+import com.example.StudySwap.exception.DuplicateNoteException;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.model.Note;
 
+import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,11 +29,7 @@ public class NoteDAOJDBC implements NoteDAO{
 
     private static final String UPLOADER_EMAIL = "uploaderEmail";
 
-    private NoteDAOJDBC(){
-
-    }
-
-    public void uploadFIle(Note note){
+    public static void uploadFile(Note note, String sellerEmail) throws DuplicateNoteException {
         Connection connection;
 
         try{
@@ -41,10 +40,11 @@ public class NoteDAOJDBC implements NoteDAO{
                 throw new IllegalArgumentException("Note object contain null values");
             }
             connection = ConnectionDB.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO files (fileName, extension, content) VALUES(?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO files (fileName, extension, content, uploaderEmail) VALUES(?, ?, ?, ?)");
                 preparedStatement.setString(1, note.getFileName());
                 preparedStatement.setString(2, note.getExtension());
                 preparedStatement.setBinaryStream(3, new ByteArrayInputStream(note.getContent()));
+                preparedStatement.setString(4, sellerEmail);
 
                 preparedStatement.executeUpdate();
             }catch(SQLException e){
