@@ -61,3 +61,31 @@ AnchorPane{
 
     -fx-cursor: hand;
 }
+
+Spinner{
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #28a745;
+
+    -fx-text-inner-color: #000000;
+    -fx-font-size: 14;
+}
+
+.increment-arrow-button{
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 1 1 0 1;
+    -fx-border-color: #28a745;
+
+    -fx-text-inner-color: #000000;
+}
+
+.decrement-arrow-button{
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 1 1 0 1;
+    -fx-border-color: #28a745;
+
+    -fx-text-inner-color: #000000;
+}

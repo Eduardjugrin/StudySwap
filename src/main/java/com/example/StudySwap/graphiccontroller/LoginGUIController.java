@@ -49,7 +49,7 @@ public class LoginGUIController {
 
                 case 2 ->{
                     loginController.sellerLogin(loginBean);
-                    root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/fxml/sellerHomepage.fxml")));
+                    root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/fxml/sellNotesPage.fxml")));
                 }
 
                 default -> throw new UserNotFoundException();

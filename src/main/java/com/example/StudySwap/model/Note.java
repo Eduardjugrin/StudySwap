@@ -6,15 +6,26 @@ public class Note {
     private String extension;
     private byte[] content;
     private String uploaderEmail;
+    private double price;
+    private String subject;
 
     //necessario per le operazioni di recupero dal db
-    public Note(String fileName, String extension, byte[] content, String uploaderEmail){
+    public Note(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
         this.fileName = fileName;
         this.extension = extension;
         this.content = content;
         this.uploaderEmail = uploaderEmail;
+        this.price = price;
+        this.subject = subject;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
 
     public int getFileID() {
         return fileID;
@@ -54,5 +65,13 @@ public class Note {
 
     public void setUploaderEmail(String uploaderEmail) {
         this.uploaderEmail = uploaderEmail;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

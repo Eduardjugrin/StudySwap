@@ -27,8 +27,9 @@ public class NoteDAOJDBC implements NoteDAO{
     private static final String FILE_NAME = "fileName";
     private static final String EXTENSION = "extension";
     private static final String CONTENT = "content";
-
     private static final String UPLOADER_EMAIL = "uploaderEmail";
+    private static final String SUBJECT = "subject";
+    private static final String PRICE = "price";
 
     public static void uploadFile(Note note, String sellerEmail) throws DuplicateNoteException {
         Connection connection;
@@ -46,11 +47,13 @@ public class NoteDAOJDBC implements NoteDAO{
                 throw new DuplicateNoteException();
             }
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO files (fileName, extension, content, uploaderEmail) VALUES(?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO files (fileName, extension, content, uploaderEmail, price, subject) VALUES(?, ?, ?, ?, ?, ?)");
                 preparedStatement.setString(1, note.getFileName());
                 preparedStatement.setString(2, note.getExtension());
                 preparedStatement.setBinaryStream(3, new ByteArrayInputStream(note.getContent()));
                 preparedStatement.setString(4, sellerEmail);
+                preparedStatement.setDouble(5, note.getPrice());
+                preparedStatement.setString(6, note.getSubject().toLowerCase());
 
                 preparedStatement.executeUpdate();
             }catch(SQLException e){
@@ -93,8 +96,10 @@ public class NoteDAOJDBC implements NoteDAO{
         String extension = resultSet.getString(EXTENSION);
         byte[] content = resultSet.getBytes(CONTENT);
         String uploaderEmail = resultSet.getString(UPLOADER_EMAIL);
+        double price = resultSet.getDouble(PRICE);
+        String subject = resultSet.getString(SUBJECT);
 
-        return new Note(fileName, extension, content, uploaderEmail);
+        return new Note(fileName, extension, content, uploaderEmail, price, subject);
     }
 
     private static boolean fileExists(Connection connection, String fileName) throws SQLException{
