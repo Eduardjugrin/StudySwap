@@ -60,7 +60,9 @@ public class RetrieveQueries {
     }
 
     public static ResultSet retrieveAllNotes(Connection connection) throws SQLException{
-        String sql = "SELECT * FROM files";
+        String sql = "SELECT f.*, u.firstName, u.lastName " +
+                "FROM files f " +
+                "INNER JOIN users u ON f.uploaderEmail = u.email";
 
         preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -69,6 +71,16 @@ public class RetrieveQueries {
 
     public static ResultSet retrieveNotesBySeller(Connection connection, String sellerEmail) throws SQLException{
         String sql = "SELECT * FROM files WHERE uploaderEmail = ?";
+
+        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+        preparedStatement.setString(1, sellerEmail);
+
+        return preparedStatement.executeQuery();
+    }
+
+    public static ResultSet retrieveUser(Connection connection, String sellerEmail) throws SQLException{
+        String sql = "SELECT firstName, lastName FROM users WHERE email = ?";
 
         preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 

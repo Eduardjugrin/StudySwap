@@ -8,16 +8,28 @@ public class Note {
     private String uploaderEmail;
     private double price;
     private String subject;
+    private String author;
 
     //necessario per le operazioni di recupero dal db
-    public Note(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
+    public Note(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
         this.fileName = fileName;
         this.extension = extension;
         this.content = content;
         this.uploaderEmail = uploaderEmail;
         this.price = price;
         this.subject = subject;
+        this.author = author;
     }
+
+    //altro costruttore
+//    public Note(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
+//        this.fileName = fileName;
+//        this.extension = extension;
+//        this.content = content;
+//        this.uploaderEmail = uploaderEmail;
+//        this.price = price;
+//        this.subject = subject;
+//    }
 
     public double getPrice() {
         return price;
@@ -41,6 +53,10 @@ public class Note {
 
     public byte[] getContent() {
         return content;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public String getUploaderEmail() {
@@ -73,5 +89,9 @@ public class Note {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

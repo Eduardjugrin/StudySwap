@@ -5,6 +5,7 @@ import com.example.StudySwap.DAO.queries.RetrieveQueries;
 import com.example.StudySwap.engineering.observer.Printer;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.model.Buyer;
+import com.example.StudySwap.model.Seller;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -58,4 +59,5 @@ public class BuyerDAO {
 
         return new Buyer(firstName, lastName, email, paymentMethod);
     }
+
 }

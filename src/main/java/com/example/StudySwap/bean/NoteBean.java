@@ -7,6 +7,17 @@ public class NoteBean {
     private String uploaderEmail;
     private double price;
     private String subject;
+    private String author;
+
+    public NoteBean(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
+        this.fileName = fileName;
+        this.extension = extension;
+        this.content = content;
+        this.uploaderEmail = uploaderEmail;
+        this.price = price;
+        this.subject = subject;
+        this.author = author;
+    }
 
     public NoteBean(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
         this.fileName = fileName;
@@ -39,5 +50,9 @@ public class NoteBean {
 
     public java.lang.String getSubject() {
         return subject;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 }

@@ -22,6 +22,8 @@ public class NoteDAOJDBC implements NoteDAO{
     private static final String UPLOADER_EMAIL = "uploaderEmail";
     private static final String SUBJECT = "subject";
     private static final String PRICE = "price";
+    private static final String FIRST_NAME = "firstName";
+    private static final String LAST_NAME = "lastName";
 
     public static void uploadFile(Note note, String sellerEmail) throws DuplicateNoteException {
         Connection connection;
@@ -53,8 +55,8 @@ public class NoteDAOJDBC implements NoteDAO{
         }
     }
 
-    @Override
-    public List<Note> getAllNotes() throws NotFoundException{
+
+    public static List<Note> getAllNotes() throws NotFoundException{
 
         List<Note> noteList = new ArrayList<>();
         Connection connection;
@@ -73,9 +75,9 @@ public class NoteDAOJDBC implements NoteDAO{
             resultSet.first();
             do{
                 note = setFileData(resultSet);
+                noteList.add(note);
             }while(resultSet.next());
 
-            noteList.add(note);
 
         }catch(SQLException e){
             Printer.printError(e.getMessage());
@@ -97,6 +99,7 @@ public class NoteDAOJDBC implements NoteDAO{
             if(!resultSet.first()){
                 return null;
             }
+
             resultSet.first();
             do{
                 note = setFileData(resultSet);
@@ -109,6 +112,25 @@ public class NoteDAOJDBC implements NoteDAO{
 
         return notesByAuthorList;
     }
+
+//    public static String getAuthor(Note note, String sellerEmail){
+//        Connection connection;
+//        ResultSet resultSet = null;
+//        String author = null;
+//
+//        try{
+//            connection = ConnectionDB.getConnection();
+//
+//            if(resultSet.first()){
+//                author = resultSet.getString("firstName") + resultSet.getString("lastName");
+//            }
+//
+//            resultSet = RetrieveQueries.retrieveUser(connection, note.getUploaderEmail());
+//        }catch(SQLException e){
+//            Printer.printError(e.getMessage());
+//        }
+//        return author;
+//    }
     public static Note setFileData(ResultSet resultSet) throws SQLException{
         String fileName = resultSet.getString(FILE_NAME);
         String extension = resultSet.getString(EXTENSION);
@@ -116,8 +138,9 @@ public class NoteDAOJDBC implements NoteDAO{
         String uploaderEmail = resultSet.getString(UPLOADER_EMAIL);
         double price = resultSet.getDouble(PRICE);
         String subject = resultSet.getString(SUBJECT);
+        String author = resultSet.getString(FIRST_NAME) + " " + resultSet.getString(LAST_NAME);
 
-        return new Note(fileName, extension, content, uploaderEmail, price, subject);
+        return new Note(fileName, extension, content, uploaderEmail, price, subject, author);
     }
 
     private static boolean fileExists(Connection connection, String fileName) throws SQLException{
