@@ -2,10 +2,9 @@ package com.example.StudySwap.DAO;
 
 import com.example.StudySwap.Connection.ConnectionDB;
 import com.example.StudySwap.DAO.queries.RetrieveQueries;
-import com.example.StudySwap.engineering.Printer;
+import com.example.StudySwap.engineering.observer.Printer;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.model.Seller;
-import org.w3c.dom.traversal.NodeIterator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

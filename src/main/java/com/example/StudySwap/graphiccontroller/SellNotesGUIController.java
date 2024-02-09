@@ -4,8 +4,8 @@ import com.example.StudySwap.Main;
 import com.example.StudySwap.appcontroller.NoteUploadController;
 import com.example.StudySwap.bean.NoteBean;
 import com.example.StudySwap.bean.SellerBean;
-import com.example.StudySwap.engineering.Session;
-import com.example.StudySwap.engineering.ShowExceptionSupport;
+import com.example.StudySwap.engineering.Singleton.Session;
+import com.example.StudySwap.engineering.observer.ShowExceptionSupport;
 import com.example.StudySwap.exception.DuplicateNoteException;
 import com.example.StudySwap.exception.NotFoundException;
 import javafx.fxml.FXML;
@@ -42,7 +42,7 @@ public class SellNotesGUIController {
 
     private File selectedFile;
 
-    private static final String SELLER_HP = "SellerHomepage.fxml";
+    private static final String SELLER_HP = "/fxml/SellerHomepage.fxml";
 
     public void initialize(){
         DecimalFormat format = new DecimalFormat("#.##"); // Formato per i numeri decimali con due cifre decimali
@@ -61,7 +61,7 @@ public class SellNotesGUIController {
             }
         });
         priceSpinner.getEditor().setTextFormatter(textFormatter);
-        priceSpinner.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(Float.MIN_VALUE, Float.MAX_VALUE, 0.0, 0.01));
+        priceSpinner.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, Float.MAX_VALUE, 0.0, 0.01));
     }
 
 
@@ -91,12 +91,8 @@ public class SellNotesGUIController {
 
         try{
 
-            if(selectedFile == null){
-                ShowExceptionSupport.showException("invalid path");
-            }else if(subject == null){
-                ShowExceptionSupport.showException("subject field is empty");
-            }else if(priceSpinner == null){
-                ShowExceptionSupport.showException("insert a price");
+            if(selectedFile == null || subject.getText().isEmpty() || priceSpinner.getValue() == 0.0){
+                ShowExceptionSupport.showException("You must fill all the fields");
             }else{
                     //leggere il contenuto del file come array di byte
                     byte[] fileContent = Files.readAllBytes(selectedFile.toPath());
@@ -108,7 +104,7 @@ public class SellNotesGUIController {
                     NoteUploadController noteUploadController = new NoteUploadController();
                     noteUploadController.uploadFile(noteBean, sellerEmail);
 
-                    ShowExceptionSupport.showException("file caricato con successo");
+                    ShowExceptionSupport.showException("File uploaded successfully!");
                 }
 
         }catch(DuplicateNoteException e){
@@ -134,6 +130,7 @@ public class SellNotesGUIController {
     }
 
     public void logout() throws IOException{
-        System.out.println("aaa");
+        LogoutGUIController logoutGUIController = new LogoutGUIController();
+        logoutGUIController.logout();
     }
 }

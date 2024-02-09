@@ -2,20 +2,12 @@ package com.example.StudySwap.DAO;
 
 import com.example.StudySwap.Connection.ConnectionDB;
 import com.example.StudySwap.DAO.queries.RetrieveQueries;
-import com.example.StudySwap.engineering.Printer;
-import com.example.StudySwap.engineering.ShowExceptionSupport;
+import com.example.StudySwap.engineering.observer.Printer;
 import com.example.StudySwap.exception.DuplicateNoteException;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.model.Note;
 
-import java.awt.*;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -91,6 +83,32 @@ public class NoteDAOJDBC implements NoteDAO{
         return noteList;
     }
 
+    public static List<Note> getAllNotesBySeller(String sellerEmail) throws NotFoundException{
+        Connection connection;
+        List<Note> notesByAuthorList = new ArrayList<>();
+        Note note = null;
+        ResultSet resultSet = null;
+
+        try{
+            connection = ConnectionDB.getConnection();
+
+            resultSet = RetrieveQueries.retrieveNotesBySeller(connection, sellerEmail);
+
+            if(!resultSet.first()){
+                return null;
+            }
+            resultSet.first();
+            do{
+                note = setFileData(resultSet);
+                notesByAuthorList.add(note);
+            }while(resultSet.next());
+
+        }catch(SQLException e){
+            Printer.printError(e.getMessage());
+        }
+
+        return notesByAuthorList;
+    }
     public static Note setFileData(ResultSet resultSet) throws SQLException{
         String fileName = resultSet.getString(FILE_NAME);
         String extension = resultSet.getString(EXTENSION);

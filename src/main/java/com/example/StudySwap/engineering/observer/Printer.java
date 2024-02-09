@@ -1,4 +1,4 @@
-package com.example.StudySwap.engineering;
+package com.example.StudySwap.engineering.observer;
 
 import java.util.logging.Logger;
 

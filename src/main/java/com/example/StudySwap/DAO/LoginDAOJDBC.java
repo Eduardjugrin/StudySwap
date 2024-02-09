@@ -5,7 +5,7 @@ import com.example.StudySwap.DAO.queries.RetrieveQueries;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.exception.UserNotFoundException;
 import com.example.StudySwap.model.User;
-import com.example.StudySwap.engineering.Printer;
+import com.example.StudySwap.engineering.observer.Printer;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

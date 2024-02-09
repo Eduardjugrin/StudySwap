@@ -1,6 +1,6 @@
 package com.example.StudySwap.Connection;
 
-import com.example.StudySwap.engineering.Printer;
+import com.example.StudySwap.engineering.observer.Printer;
 
 import java.io.FileInputStream;
 import java.io.IOException;

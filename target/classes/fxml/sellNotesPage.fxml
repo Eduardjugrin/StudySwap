@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,14 +15,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<!--    <children>-->
-<!--        <Label layoutX="31.0" layoutY="42.0" text="Seleziona un file PDF da caricare:" />-->
-<!--        <TextField fx:id="filePathField" layoutX="31.0" layoutY="71.0" prefWidth="250.0" promptText="Nessun file selezionato" />-->
-<!--        <Button layoutX="298.0" layoutY="71.0" mnemonicParsing="false" onAction="#browseFile" text="Sfoglia..." />-->
-<!--        <Button layoutX="156.0" layoutY="126.0" mnemonicParsing="false" onAction="#uploadFile" text="Carica File" />-->
-<!--    </children>-->
-
-<?import javafx.scene.control.Spinner?>
 <BorderPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.StudySwap.graphiccontroller.SellNotesGUIController">
     <stylesheets>
         <URL value="@../values/style.css" />
@@ -36,7 +29,7 @@
                 </Label>
                 <ImageView fx:id="logoutIcon" fitHeight="52.0" fitWidth="52.0" layoutX="14.0" layoutY="24.0" onMouseClicked="#toPreviousScreen" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
                     <image>
-                        <Image url="@../img/back.png" />
+                        <Image url="@../img/backIcon.png" />
                     </image>
                 <cursor>
                    <Cursor fx:constant="HAND" />
@@ -44,7 +37,7 @@
                 </ImageView>
                 <ImageView fx:id="profileIcon" fitHeight="52.0" fitWidth="52.0" layoutX="920.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
                     <image>
-                        <Image url="@../img/logout.png" />
+                        <Image url="@../img/logoutIcon.png" />
                     </image>
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -72,8 +65,11 @@
                                     <graphic>
                                         <ImageView fitHeight="32.0" fitWidth="32.0">
                                             <image>
-                                                <Image url="@../img/folder.png" />
+                                                <Image url="@../img/folderIcon.png" />
                                             </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                                         </ImageView>
                                     </graphic>
                                 </Button>
@@ -87,7 +83,10 @@
                                     </font>
                                 </Label>
                                 <Pane prefHeight="64.0" prefWidth="234.0" />
-                                <TextField fx:id="subject" layoutX="31.0" layoutY="71.0" prefWidth="250.0" promptText="What subject do the notes belong to?" />
+                                <TextField fx:id="subject" layoutX="31.0" layoutY="71.0" prefWidth="250.0" promptText="What subject do the notes belong to?">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor></TextField>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="654.0">
@@ -97,7 +96,10 @@
                                 </font>
                             </Label>
                             <Pane prefHeight="32.0" prefWidth="254.0" />
-                            <Spinner fx:id="priceSpinner" prefHeight="26" prefWidth="80" editable="true"/>
+                            <Spinner fx:id="priceSpinner" editable="true" prefHeight="26" prefWidth="80">
+                        <cursor>
+                           <Cursor fx:constant="TEXT" />
+                        </cursor></Spinner>
                         </HBox>
                     </children>
                 </VBox>
@@ -106,7 +108,10 @@
     </center>
     <bottom>
         <AnchorPane prefHeight="78.0" prefWidth="1000.0">
-                <Button fx:id="uploadButton" alignment="CENTER" layoutX="467.0" layoutY="25.0" mnemonicParsing="false" onAction="#uploadFile" text="Upload" />
+                <Button fx:id="uploadButton" alignment="CENTER" layoutX="467.0" layoutY="25.0" mnemonicParsing="false" onAction="#uploadFile" text="Upload">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
         </AnchorPane>
     </bottom>
 </BorderPane>

@@ -89,3 +89,32 @@ Spinner{
 
     -fx-text-inner-color: #000000;
 }
+
+.scroll-pane{
+    -fx-background-color: #f4f0d2;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #f4f0d2;
+}
+
+#scroll .viewport {
+    -fx-background-color: #f4f0d2;
+}
+
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: #f4f0d2;
+    -fx-border-color: Transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #28a745;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 2px;
+    -fx-min-width: 5px;
+}
+
+RowConstraints{
+    -fx-background-color: #f4f0d2;
+}

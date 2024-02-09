@@ -66,4 +66,14 @@ public class RetrieveQueries {
 
         return preparedStatement.executeQuery();
     }
+
+    public static ResultSet retrieveNotesBySeller(Connection connection, String sellerEmail) throws SQLException{
+        String sql = "SELECT * FROM files WHERE uploaderEmail = ?";
+
+        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+        preparedStatement.setString(1, sellerEmail);
+
+        return preparedStatement.executeQuery();
+    }
 }

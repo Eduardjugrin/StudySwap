@@ -6,7 +6,7 @@ import com.example.StudySwap.DAO.SellerDAO;
 import com.example.StudySwap.bean.BuyerBean;
 import com.example.StudySwap.bean.LoginBean;
 import com.example.StudySwap.bean.SellerBean;
-import com.example.StudySwap.engineering.Session;
+import com.example.StudySwap.engineering.Singleton.Session;
 import com.example.StudySwap.engineering.factory.LoginDAOFactory;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.exception.UserNotFoundException;

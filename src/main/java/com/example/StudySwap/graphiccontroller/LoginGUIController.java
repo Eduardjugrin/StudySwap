@@ -3,8 +3,8 @@ package com.example.StudySwap.graphiccontroller;
 import com.example.StudySwap.Main;
 import com.example.StudySwap.appcontroller.LoginController;
 import com.example.StudySwap.bean.LoginBean;
-import com.example.StudySwap.engineering.Printer;
-import com.example.StudySwap.engineering.ShowExceptionSupport;
+import com.example.StudySwap.engineering.observer.Printer;
+import com.example.StudySwap.engineering.observer.ShowExceptionSupport;
 import com.example.StudySwap.exception.EmailFormatException;
 import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.exception.UserNotFoundException;
@@ -49,7 +49,7 @@ public class LoginGUIController {
 
                 case 2 ->{
                     loginController.sellerLogin(loginBean);
-                    root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/fxml/sellNotesPage.fxml")));
+                    root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/fxml/sellerHomepage.fxml")));
                 }
 
                 default -> throw new UserNotFoundException();

@@ -1,7 +1,7 @@
 //package com.example.StudySwap.DAO;
 //
 //import com.example.StudySwap.exception.AuthorNotFoundException;
-//import com.example.StudySwap.engineering.Printer;
+//import com.example.StudySwap.engineering.observer.Printer;
 //import com.example.StudySwap.model.Note;
 //
 //import java.io.BufferedReader;

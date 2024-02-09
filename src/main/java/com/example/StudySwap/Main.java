@@ -1,16 +1,5 @@
 package com.example.StudySwap;
 
-import com.example.StudySwap.DAO.LoginDAO;
-import com.example.StudySwap.DAO.LoginDAOJDBC;
-import com.example.StudySwap.appcontroller.LoginController;
-import com.example.StudySwap.bean.BuyerBean;
-import com.example.StudySwap.bean.LoginBean;
-import com.example.StudySwap.bean.SellerBean;
-import com.example.StudySwap.engineering.Printer;
-import com.example.StudySwap.engineering.Session;
-import com.example.StudySwap.exception.NotFoundException;
-import com.example.StudySwap.exception.UserNotFoundException;
-import com.example.StudySwap.model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
