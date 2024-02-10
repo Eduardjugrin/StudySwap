@@ -39,16 +39,18 @@ public class PurchasedNoteItemGUIController {
 
     public void viewNotes() throws IOException{
 
-        new File("/secureDir/myFile.pdf");
+        String tempDirPath = System.getProperty("java.io.tmpdir");
+        File tempDir = new File(tempDirPath + File.separator + "my_apptemp");
+        tempDir.mkdirs();
         File.createTempFile(noteBean.getFileName(), ".pdf");
 
 
         try{
+            File tempFile = File.createTempFile(noteBean.getFileName(), ".pdf", tempDir);
             byte[] pdfData = noteBean.getContent();
 
             if(pdfData != null){
                 try(InputStream inputStream = new ByteArrayInputStream(pdfData)){
-                    File tempFile = File.createTempFile(noteBean.getFileName(), ".pdf");
 
                     try(FileOutputStream fos = new FileOutputStream(tempFile)){
                         IOUtils.copy(inputStream, fos);
@@ -59,6 +61,8 @@ public class PurchasedNoteItemGUIController {
 
         }catch(IOException e){
             Printer.printError(e.getMessage());
+        }catch(SecurityException se){
+            Printer.printError(se.getMessage());
         }
     }
 
