@@ -12,10 +12,8 @@ import javafx.scene.control.Label;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import org.apache.commons.io.IOUtils;
 
 public class PurchasedNoteItemGUIController {
 
@@ -39,18 +37,24 @@ public class PurchasedNoteItemGUIController {
         authorLabel.setText(String.valueOf(setNote.getAuthor()));
     }
 
-    public void viewNotes(){
+    public void viewNotes() throws IOException{
+
+        new File("/secureDir/myFile.pdf");
+        File.createTempFile(noteBean.getFileName(), ".pdf");
+
 
         try{
             byte[] pdfData = noteBean.getContent();
 
             if(pdfData != null){
-                File tempFile = File.createTempFile(noteBean.getFileName(), ".pdf");
-                try(FileOutputStream fos = new FileOutputStream(tempFile)){
-                    fos.write(pdfData);
-                }
+                try(InputStream inputStream = new ByteArrayInputStream(pdfData)){
+                    File tempFile = File.createTempFile(noteBean.getFileName(), ".pdf");
 
-                Desktop.getDesktop().open(tempFile);
+                    try(FileOutputStream fos = new FileOutputStream(tempFile)){
+                        IOUtils.copy(inputStream, fos);
+                    }
+                    Desktop.getDesktop().open(tempFile);
+                }
             }
 
         }catch(IOException e){
