@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane prefHeight="600" prefWidth="1000" styleClass="test" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.StudySwap.graphiccontroller.PurchasedNotesGUIController">
+    <stylesheets>
+        <URL value="@../values/style.css"/>
+    </stylesheets>
+    <top>
+        <AnchorPane prefHeight="78.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" layoutX="333.0" layoutY="20.0" text="Your purchased notes">
+                    <font>
+                        <Font name="System bold" size="36."/>
+                    </font>
+                </Label>
+                <ImageView fx:id="toProfile" fitHeight="52.0" fitWidth="52.0" layoutX="14.0" layoutY="24.0"
+                           onMouseClicked="#toPreviousScreen" pickOnBounds="true" preserveRatio="true"
+                           styleClass="clickableImageView">
+                    <image>
+                        <Image url="@../img/backIcon.png"/>
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
+                <ImageView fx:id="logoutIcon" fitHeight="52.0" fitWidth="52.0" layoutX="920.0" layoutY="24.0"
+                           onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true"
+                           styleClass="clickableImageView">
+                    <image>
+                        <Image url="@../img/logoutIcon.png"/>
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primar-color" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" layoutX="260.0" layoutY="10.0" prefHeight="450" prefWidth="490">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="422.0" prefWidth="480.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <ScrollPane fx:id="scroll" fitToHeight="true" prefHeight="422.0" prefWidth="550.0"
+                                            stylesheets="@../values/style.css" HBox.hgrow="ALWAYS">
+                                    <content>
+                                        <GridPane fx:id="grid" alignment="CENTER" prefHeight="0.0" prefWidth="30.0">
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+                                            </rowConstraints>
+                                        </GridPane>
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </center>
+    <bottom>
+        <AnchorPane prefHeight="78.0" prefWidth="1000.0">
+        </AnchorPane>
+    </bottom>
+</BorderPane>
