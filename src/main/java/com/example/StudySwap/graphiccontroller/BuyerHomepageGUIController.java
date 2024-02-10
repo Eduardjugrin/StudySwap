@@ -3,6 +3,7 @@ package com.example.StudySwap.graphiccontroller;
 import com.example.StudySwap.DAO.NoteDAOJDBC;
 import com.example.StudySwap.Main;
 import com.example.StudySwap.bean.BuyerBean;
+import com.example.StudySwap.bean.NoteBean;
 import com.example.StudySwap.bean.SellerBean;
 import com.example.StudySwap.engineering.Singleton.Session;
 import com.example.StudySwap.engineering.observer.ShowExceptionSupport;
@@ -31,20 +32,23 @@ public class BuyerHomepageGUIController {
         welcomeLabel.setText("Welcome in your Homepage " + Session.getCurrentSession().getBuyerBean().getFirstName());
 
        List<Note> allNotes = NoteDAOJDBC.getAllNotes();
+       List<NoteBean> allNotesBean = null;
+
 
         // Popola la GridPane con i dati degli appunti
         int row = 1;
         int col = 0;
 
         for (Note note : allNotes) {
+            NoteBean noteBean = new NoteBean(note.getFileID(), note.getFileName(), note.getExtension(), note.getContent(), note.getUploaderEmail(), note.getPrice(), note.getSubject(), note.getAuthor());
             // Creazione dell'elemento elemento visuale per l'appunto
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/fxml/buyerNoteItem.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
 
             BuyerNoteItemGUIController buyerNoteItemGUIController = fxmlLoader.getController();
-            buyerNoteItemGUIController.setData(note);
-
+            buyerNoteItemGUIController.setData(noteBean);
+            buyerNoteItemGUIController.setNoteBean(noteBean);
 
             // Incrementa la riga  per posizionare il prossimo elemento
             if (col == 1) {

@@ -1,6 +1,7 @@
 package com.example.StudySwap.bean;
 
 public class NoteBean {
+    private int fileId;
     private String fileName;
     private String extension;
     private byte[] content;
@@ -9,7 +10,8 @@ public class NoteBean {
     private String subject;
     private String author;
 
-    public NoteBean(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
+    public NoteBean(int fileId, String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
+        this.fileId =fileId;
         this.fileName = fileName;
         this.extension = extension;
         this.content = content;
@@ -17,6 +19,16 @@ public class NoteBean {
         this.price = price;
         this.subject = subject;
         this.author = author;
+    }
+
+    public NoteBean(int fileId,String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
+        this.fileId = fileId;
+        this.fileName = fileName;
+        this.extension = extension;
+        this.content = content;
+        this.uploaderEmail = uploaderEmail;
+        this.price = price;
+        this.subject = subject;
     }
 
     public NoteBean(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
@@ -54,5 +66,9 @@ public class NoteBean {
 
     public String getAuthor() {
         return author;
+    }
+
+    public int getFileId() {
+        return fileId;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.StudySwap.model;
 
 public class Note {
-    private int fileID;
+    private int fileId;
     private String fileName;
     private String extension;
     private byte[] content;
@@ -11,7 +11,8 @@ public class Note {
     private String author;
 
     //necessario per le operazioni di recupero dal db
-    public Note(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
+    public Note(int fileId, String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
+        this.fileId = fileId;
         this.fileName = fileName;
         this.extension = extension;
         this.content = content;
@@ -22,14 +23,15 @@ public class Note {
     }
 
     //altro costruttore
-//    public Note(String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
-//        this.fileName = fileName;
-//        this.extension = extension;
-//        this.content = content;
-//        this.uploaderEmail = uploaderEmail;
-//        this.price = price;
-//        this.subject = subject;
-//    }
+    public Note(int fileId, String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject){
+        this.fileId = fileId;
+        this.fileName = fileName;
+        this.extension = extension;
+        this.content = content;
+        this.uploaderEmail = uploaderEmail;
+        this.price = price;
+        this.subject = subject;
+    }
 
     public double getPrice() {
         return price;
@@ -40,7 +42,7 @@ public class Note {
     }
 
     public int getFileID() {
-        return fileID;
+        return fileId;
     }
 
     public String getFileName() {
@@ -63,8 +65,8 @@ public class Note {
         return uploaderEmail;
     }
 
-    public void setFileID(int fileID) {
-        this.fileID = fileID;
+    public void setFileID(int fileId) {
+        this.fileId = fileId;
     }
 
     public void setFileName(String fileName) {

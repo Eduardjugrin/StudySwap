@@ -32,7 +32,7 @@
         </VBox>
         <HBox alignment="CENTER" layoutX="178.0" layoutY="129.0">
             <children>
-                <Button fx:id="editDetails" mnemonicParsing="false" onAction="#buyNotes" text="Buy">
+                <Button fx:id="buyNotesButton" mnemonicParsing="false" onAction="#buyNotes" text="Buy">
                     <graphic>
                         <ImageView fitHeight="16" fitWidth="16" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../img/buyIcon.png" />
