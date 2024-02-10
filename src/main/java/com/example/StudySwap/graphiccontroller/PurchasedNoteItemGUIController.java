@@ -13,7 +13,15 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.attribute.FileAttribute;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.util.Set;
+
+import org.apache.commons.io.FileSystemUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.SystemUtils;
 
 public class PurchasedNoteItemGUIController {
 
@@ -49,13 +57,19 @@ public class PurchasedNoteItemGUIController {
             File tempFile = File.createTempFile(noteBean.getFileName(), ".pdf", tempDir);
             byte[] pdfData = noteBean.getContent();
 
-            if(pdfData != null){
-                try(InputStream inputStream = new ByteArrayInputStream(pdfData)){
+            if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+                Set<PosixFilePermission> perms = PosixFilePermissions.fromString("rwx------");
+                FileAttribute<Set<PosixFilePermission>> attr = PosixFilePermissions.asFileAttribute(perms);
+                Files.createTempFile(noteBean.getFileName(), ".pdf");
+            }else {
+                if (pdfData != null) {
+                    try (InputStream inputStream = new ByteArrayInputStream(pdfData)) {
 
-                    try(FileOutputStream fos = new FileOutputStream(tempFile)){
-                        IOUtils.copy(inputStream, fos);
+                        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+                            IOUtils.copy(inputStream, fos);
+                        }
+                        Desktop.getDesktop().open(tempFile);
                     }
-                    Desktop.getDesktop().open(tempFile);
                 }
             }
 
@@ -63,6 +77,12 @@ public class PurchasedNoteItemGUIController {
             Printer.printError(e.getMessage());
         }catch(SecurityException se){
             Printer.printError(se.getMessage());
+        }finally {
+            File[] tempFiles = tempDir.listFiles();
+            for(File file : tempFiles){
+                file.delete();
+            }
+            tempDir.delete();
         }
     }
 
