@@ -30,20 +30,7 @@
                 </children>
             </HBox>
         </VBox>
-        <HBox alignment="CENTER" layoutX="178.0" layoutY="129.0">
-            <children>
-                <Button fx:id="view" mnemonicParsing="false" onAction="#viewNotes" text="View">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../img/viewIcon.png" />
-                        </ImageView>
-                    </graphic>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-            </children>
-        </HBox>
+        <HBox alignment="CENTER" layoutX="178.0" layoutY="129.0" />
         <HBox alignment="CENTER" layoutX="1.0" layoutY="43.0" prefHeight="18" prefWidth="444.0">
             <children>
                 <Label prefHeight="28.0" prefWidth="70.0" text="Subject:">
@@ -83,5 +70,29 @@
                 <Label fx:id="authorLabel" prefHeight="38.0" prefWidth="80.0" text="seller 1" textAlignment="CENTER" />
             </children>
         </HBox>
+          <VBox alignment="CENTER" layoutX="72.0" layoutY="107.0" prefWidth="300">
+          <Button fx:id="view" alignment="CENTER" mnemonicParsing="false" onAction="#viewNotes" text="View">
+
+              <graphic>
+                  <ImageView fitHeight="16" fitWidth="16" pickOnBounds="true" preserveRatio="true">
+                      <Image url="@../img/viewIcon.png" />
+                  </ImageView>
+              </graphic>
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+          </Button>
+          <Pane prefHeight="5" />
+              <Button fx:id="leaveReview" alignment="CENTER" mnemonicParsing="false" onAction="#leaveReview" text="Leave review">
+                  <graphic>
+                      <ImageView fitHeight="16" fitWidth="16" pickOnBounds="true" preserveRatio="true">
+                          <Image url="@../img/reviewIcon.png" />
+                      </ImageView>
+                  </graphic>
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+              </Button>
+          </VBox>
     </children>
 </AnchorPane>

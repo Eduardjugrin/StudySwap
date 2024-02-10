@@ -78,4 +78,8 @@ public class PurchasedNoteItemGUIController {
     public void setNoteBean(NoteBean noteBean){
         this.noteBean = noteBean;
     }
+
+    public void leaveReview(){
+        ShowExceptionSupport.showException(NOT_IMPLEMENTED);
+    }
 }
