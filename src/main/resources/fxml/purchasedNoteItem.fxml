@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="180.0" prefWidth="433.0" style="-fx-border-color: #28a745; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.StudySwap.graphiccontroller.PurchasedNoteItemGUIController">
+    <stylesheets>
+        <URL value="@../values/style.css" />
+    </stylesheets>
+
+    <children>
+        <VBox>
+            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="444.0">
+                <children>
+                    <Label fx:id="noteTitleLabel" prefHeight="29.0" prefWidth="285.0" text="Note Title">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+        </VBox>
+        <HBox alignment="CENTER" layoutX="178.0" layoutY="129.0">
+            <children>
+                <Button fx:id="view" mnemonicParsing="false" onAction="#viewNotes" text="View">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../img/viewIcon.png" />
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="1.0" layoutY="43.0" prefHeight="18" prefWidth="444.0">
+            <children>
+                <Label prefHeight="28.0" prefWidth="70.0" text="Subject:">
+                    <HBox.margin>
+                        <Insets left="5.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Label fx:id="subjectLabel" prefHeight="27.0" prefWidth="140.0" text="Basi di dati" textAlignment="CENTER" />
+                <HBox prefHeight="28.0" prefWidth="186.0">
+                    <children>
+                        <Label prefHeight="28.0" prefWidth="70.0" text="Price:">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="priceLabel" prefHeight="38.0" prefWidth="80.0" text="€15" textAlignment="CENTER" />
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutY="81.0" prefHeight="18" prefWidth="444.0">
+            <children>
+                <Label prefHeight="28.0" prefWidth="70.0" text="Author:">
+                    <HBox.margin>
+                        <Insets left="5.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Label fx:id="authorLabel" prefHeight="38.0" prefWidth="80.0" text="seller 1" textAlignment="CENTER" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

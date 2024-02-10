@@ -108,7 +108,7 @@
     </center>
     <bottom>
         <AnchorPane prefHeight="78.0" prefWidth="1000.0">
-                <Button fx:id="uploadButton" alignment="CENTER" layoutX="467.0" layoutY="25.0" mnemonicParsing="false" onAction="#uploadFile" text="Upload">
+                <Button fx:id="uploadButton" alignment="CENTER" layoutX="390.0" layoutY="17.0" mnemonicParsing="false" onAction="#uploadFile" prefHeight="45.0" prefWidth="221.0" text="Upload">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>

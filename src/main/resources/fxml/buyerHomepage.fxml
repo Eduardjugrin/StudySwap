@@ -41,7 +41,7 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primar-color" BorderPane.alignment="CENTER">
             <children>
-                <VBox alignment="CENTER" layoutX="260.0" layoutY="10.0" prefHeight="500" prefWidth="490">
+                <VBox alignment="CENTER" layoutX="260.0" layoutY="10.0" prefHeight="450" prefWidth="490">
                     <children>
                         <HBox alignment="CENTER" prefHeight="422.0" prefWidth="480.0" VBox.vgrow="ALWAYS">
                             <children>
@@ -61,4 +61,13 @@
             </children>
         </AnchorPane>
     </center>
+    <bottom>
+        <AnchorPane prefHeight="78.0" prefWidth="1000.0">
+            <Button fx:id="toBoughtNotes" alignment="CENTER" layoutX="390.0" layoutY="14.0" mnemonicParsing="false" onAction="#toBoughtNotes" prefHeight="45.0" prefWidth="221.0" text="See the notes you already bought">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+        </AnchorPane>
+    </bottom>
 </BorderPane>

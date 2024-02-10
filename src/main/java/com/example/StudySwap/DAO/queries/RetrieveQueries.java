@@ -88,4 +88,29 @@ public class RetrieveQueries {
 
         return preparedStatement.executeQuery();
     }
+
+    public static ResultSet retrieveAllPurchasedNotes(Connection connection, String buyerEmail) throws SQLException{
+        String sql = "SELECT f.* , u.firstName, u.lastName " +
+                "FROM purchased p " +
+                "JOIN files f ON p.fileId=f.id " +
+                "JOIN users u on f.uploaderEmail = u.email " +
+                "WHERE p.buyerEmail = ? ";
+
+        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+        preparedStatement.setString(1, buyerEmail);
+
+        return preparedStatement.executeQuery();
+    }
+
+    public static ResultSet retrieveFile(Connection connection, int fileId) throws SQLException{
+        String sql = "SELECT content FROM files WHERE id = ?";
+
+        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+        preparedStatement.setInt(1, fileId);
+
+        return preparedStatement.executeQuery();
+
+    }
 }

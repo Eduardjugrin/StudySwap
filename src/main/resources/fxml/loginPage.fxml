@@ -104,4 +104,8 @@
          </children>
       </AnchorPane>
    </center>
+   <bottom>
+      <AnchorPane prefHeight="78.8" prefWidth="1000">
+      </AnchorPane>
+   </bottom>
 </BorderPane>

@@ -41,7 +41,7 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primar-color" BorderPane.alignment="CENTER">
             <children>
-                <VBox alignment="CENTER" layoutX="260.0" layoutY="10.0" prefHeight="500" prefWidth="490">
+                <VBox alignment="CENTER" layoutX="260.0" layoutY="10.0" prefHeight="450" prefWidth="490">
                     <children>
                         <HBox alignment="CENTER" prefHeight="422.0" prefWidth="480.0" VBox.vgrow="ALWAYS">
                             <children>

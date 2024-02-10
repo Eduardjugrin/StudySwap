@@ -8,10 +8,7 @@ import com.example.StudySwap.exception.NotFoundException;
 import com.example.StudySwap.model.Note;
 
 import java.io.ByteArrayInputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,5 +193,54 @@ public class NoteDAOJDBC implements NoteDAO {
             Printer.printError(e.getMessage());
             return false;
         }
+    }
+
+    public static List<Note> getPurchasedNotes(String buyerEmail){
+        Connection connection;
+
+        List<Note> purchasedNoteList = new ArrayList<>();
+        Note note = null;
+
+        try{
+            connection = ConnectionDB.getConnection();
+
+            ResultSet resultSet = RetrieveQueries.retrieveAllPurchasedNotes(connection, buyerEmail);
+
+            if (!resultSet.first()) {
+                throw new NotFoundException("no notes found");
+            }
+
+            resultSet.first();
+            do {
+                note = setBuyerFileData(resultSet);
+                purchasedNoteList.add(note);
+            } while (resultSet.next());
+
+        }catch(SQLException | NotFoundException e){
+            Printer.printError(e.getMessage());
+        }
+
+        return purchasedNoteList;
+    }
+
+    public static byte[] getFileData(int fileId) throws NotFoundException{
+        Connection connection;
+        PreparedStatement preparedStatement;
+
+        byte[] pdfData = null;
+        try{
+            connection = ConnectionDB.getConnection();
+
+            ResultSet resultSet = RetrieveQueries.retrieveFile(connection, fileId);
+
+            if (resultSet.next()) {
+                pdfData = resultSet.getBytes("content");
+            }
+
+
+        }catch(SQLException e){
+            Printer.printError(e.getMessage());
+        }
+        return pdfData;
     }
 }
