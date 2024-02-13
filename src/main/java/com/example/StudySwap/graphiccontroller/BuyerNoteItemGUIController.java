@@ -44,6 +44,7 @@ public class BuyerNoteItemGUIController {
         try {
             if(NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId())){
                 ShowExceptionSupport.showException("You Have already bought these notes");
+                return;
             } else if (PurchaseController.buyNote(noteBean)) {
                 ShowExceptionSupport.showException("Notes purchased successfully");
             }

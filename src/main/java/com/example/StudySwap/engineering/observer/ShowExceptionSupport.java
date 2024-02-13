@@ -1,6 +1,7 @@
 package com.example.StudySwap.engineering.observer;
 
 import com.example.StudySwap.Main;
+import com.example.StudySwap.engineering.ScannerSupport;
 import com.example.StudySwap.engineering.observer.Printer;
 import com.example.StudySwap.graphiccontroller.MessageBoxGUIController;
 import javafx.fxml.FXMLLoader;
@@ -44,5 +45,10 @@ public class ShowExceptionSupport {
         dialog.setScene(scene);
         dialog.centerOnScreen();
         dialog.show();
+    }
+
+    public static void showExcpetionCLI(String message){
+        Printer.printError("\n ERROR: " + message + "\nPress ENTER to continue");
+        ScannerSupport.waitEnter();
     }
 }

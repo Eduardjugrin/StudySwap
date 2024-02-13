@@ -28,7 +28,7 @@
    <center>
       <AnchorPane prefHeight="700.0" prefWidth="622.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="emailTextField" layoutX="193.0" layoutY="186.0" promptText="sample@gmail.com" styleClass="text-input" text="eduard@sample.com" stylesheets="@../values/style.css">
+            <TextField fx:id="emailTextField" layoutX="193.0" layoutY="186.0" promptText="sample@sample.com" styleClass="text-input" stylesheets="@../values/style.css">
                <font>
                   <Font size="15.0" />
                </font>
@@ -36,7 +36,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <PasswordField fx:id="passwordTextField" layoutX="193.0" layoutY="266.0" promptText="Password" styleClass="text-input" text="test456" stylesheets="@../values/style.css">
+            <PasswordField fx:id="passwordTextField" layoutX="193.0" layoutY="266.0" promptText="Password" styleClass="text-input" stylesheets="@../values/style.css">
                <font>
                   <Font size="15" />
                </font>

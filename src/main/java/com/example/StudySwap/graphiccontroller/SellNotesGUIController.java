@@ -102,7 +102,7 @@ public class SellNotesGUIController {
 
                     //caricamento del file tramite il DAO
                     NoteUploadController noteUploadController = new NoteUploadController();
-                    noteUploadController.uploadFile(noteBean, sellerEmail);
+                    noteUploadController.sellFile(noteBean, sellerEmail);
 
                     ShowExceptionSupport.showException("File uploaded successfully!");
                 }
