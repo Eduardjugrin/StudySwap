@@ -32,7 +32,8 @@ public class BuyerCLIController implements GraphicCLIController{
             }
 
             case VIEW_PURCHASED_NOTES -> {
-
+                PurchasedNotesCLIController purchasedNotesCLIController = new PurchasedNotesCLIController();
+                purchasedNotesCLIController.start();
 
                 this.start();
             }

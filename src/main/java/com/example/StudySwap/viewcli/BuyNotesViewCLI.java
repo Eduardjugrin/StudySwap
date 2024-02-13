@@ -1,49 +1,42 @@
 package com.example.StudySwap.viewcli;
 
-import com.example.StudySwap.DAO.NoteDAOJDBC;
-import com.example.StudySwap.appcontroller.PurchaseController;
-import com.example.StudySwap.bean.NoteBean;
-import com.example.StudySwap.engineering.Singleton.Session;
 import com.example.StudySwap.engineering.observer.Printer;
 import com.example.StudySwap.engineering.observer.ShowExceptionSupport;
 import com.example.StudySwap.exception.NotFoundException;
-import com.example.StudySwap.model.Note;
+import com.example.StudySwap.graphiccontroller.cli.BuyNotesCLIController;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Scanner;
 
 public class BuyNotesViewCLI {
 
-    private List<Note> allNotes;
-    public int i = 0;
+    BuyNotesCLIController buyNotesCLIController;
 
-    public void run(){
+    public BuyNotesViewCLI(BuyNotesCLIController buyNotesCLIController){
+        this.buyNotesCLIController = buyNotesCLIController;
+    }
+
+    public void run() throws SQLException, NotFoundException{
         Printer.printMessage("-------BUY NOTES--------");
-    }
 
-    public void ShowAllNotes() throws NotFoundException {
-        allNotes = NoteDAOJDBC.getAllNotes();
+        try {
+            buyNotesCLIController.showAllNotes();
+        }catch(NotFoundException e){
+            ShowExceptionSupport.showExcpetionCLI(e.getMessage());
+            buyNotesCLIController.start();
 
-        for(Note note : allNotes){
-            Printer.printMessage(i + "| Name: " + note.getFileName() + "| Subject: " + note.getSubject() + "Author: " + note.getAuthor());
-            Printer.printMessage("--------------------------------------------------------------------");
-            i++;
+        }
+
+        int choice = buyNotesCLIController.askForChoice();
+
+        if(choice-- > buyNotesCLIController.i){
+            ShowExceptionSupport.showExcpetionCLI("Invalid number");
+        }else{
+            try{
+                buyNotesCLIController.buyNote(choice);
+            }catch(SQLException e){
+                ShowExceptionSupport.showExcpetionCLI(e.getMessage());
+                buyNotesCLIController.start();
+            }
         }
     }
-
-    public void buyNote(int choice) throws SQLException {
-        System.out.println(choice);
-
-        Note note = allNotes.get(choice);
-        NoteBean noteBean = new NoteBean(note.getFileID(), note.getFileName(), note.getExtension(), note.getContent(), note.getUploaderEmail(), note.getPrice(), note.getSubject());
-
-        if(NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId())){
-            ShowExceptionSupport.showExcpetionCLI("You Have already bought these notes");
-            return;
-        } else if (PurchaseController.buyNote(noteBean)) {
-            Printer.printMessage("Notes purchased successfully");
-        }
-    }
-
 }
