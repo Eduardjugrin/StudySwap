@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.effect.InnerShadow?>
 <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.StudySwap.graphiccontroller.MessageBoxGUIController"
+            fx:controller="com.example.studyswap.graphiccontroller.MessageBoxGUIController"
             prefHeight="200.0" prefWidth="250.0" stylesheets="@../values/style.css">
 
     <Label fx:id="messageText" alignment="CENTER" contentDisplay="CENTER" prefWidth="350.0" prefHeight="97.0" text = "Error Message" textAlignment="CENTER">

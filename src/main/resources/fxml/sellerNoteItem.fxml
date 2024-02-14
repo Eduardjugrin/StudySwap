@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  style="-fx-border-color: #28a745; -fx-border-width: 2; -fx-border-radius: 10;" prefHeight="180.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.StudySwap.graphiccontroller.SellerNoteItemGUIController">
+<AnchorPane  style="-fx-border-color: #28a745; -fx-border-width: 2; -fx-border-radius: 10;" prefHeight="180.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studyswap.graphiccontroller.SellerNoteItemGUIController">
     <stylesheets>
         <URL value="@../values/style.css" />
     </stylesheets>
