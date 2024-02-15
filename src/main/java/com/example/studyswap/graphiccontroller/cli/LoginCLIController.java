@@ -50,7 +50,7 @@ public class LoginCLIController implements GraphicCLIController{
             }else if(loginBean.getRole() == 2){
                 loginController.sellerLogin(loginBean);
 
-                BuyerCLIController sellerCLIController = new BuyerCLIController();
+                SellerCLIController sellerCLIController = new SellerCLIController();
                 sellerCLIController.start();
             }else{
                 throw new UserNotFoundException();

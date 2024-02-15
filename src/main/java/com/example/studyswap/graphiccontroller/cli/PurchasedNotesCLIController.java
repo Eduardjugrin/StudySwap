@@ -68,6 +68,8 @@ public class PurchasedNotesCLIController {
                     try(FileOutputStream fos = new FileOutputStream(tempFile)){
                         IOUtils.copy(inputStream, fos);
                         Desktop.getDesktop().open(tempFile);
+
+                        //todo
                     }
                 }
             }

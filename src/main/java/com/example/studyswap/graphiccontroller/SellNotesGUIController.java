@@ -69,7 +69,7 @@ public class SellNotesGUIController {
     @FXML
     public void  browseFile(){
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleziona il file da caricare");
+        fileChooser.setTitle("select the file you wanto to upload");
 
         //impostazione filtri per specificare il tipo del file
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("File PDF (*.pdf)", "*.pdf");

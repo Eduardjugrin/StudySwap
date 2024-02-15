@@ -36,7 +36,7 @@ public class PurchasedNoteItemGUIController {
         authorLabel.setText(String.valueOf(setNote.getAuthor()));
     }
 
-    public void viewNotes() throws IOException , InterruptedException{
+    public void viewNotes() throws IOException, InterruptedException {
 
         File tempFile = null;
 
@@ -44,28 +44,31 @@ public class PurchasedNoteItemGUIController {
             byte[] pdfData = noteBean.getContent();
 
             if (pdfData != null) {
-                try (InputStream inputStream = new ByteArrayInputStream(pdfData)) {
 
                     tempFile = File.createTempFile("tempFile", ".pdf");
                     Files.write(tempFile.toPath(), pdfData);
 
                     Desktop.getDesktop().open(tempFile);
+
+                    //todo
+
                 }
             }
-        } catch (IOException | SecurityException e) {
+        catch (IOException | SecurityException e) {
             Printer.printError(e.getMessage());
         } finally {
-            if(!tempFile.delete()){
+            if (!tempFile.delete()) {
                 Printer.printMessage("An error ocured while deleting tempDir");
             }
         }
     }
 
-        public void setNoteBean (NoteBean noteBean){
-            this.noteBean = noteBean;
-        }
-
-        public void leaveReview () {
-            ShowExceptionSupport.showException(NOT_IMPLEMENTED);
-        }
+    public void setNoteBean(NoteBean noteBean) {
+        this.noteBean = noteBean;
     }
+
+    public void leaveReview() {
+        ShowExceptionSupport.showException(NOT_IMPLEMENTED);
+    }
+}
+
