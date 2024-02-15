@@ -40,6 +40,9 @@ public class NoteBean {
         this.subject = subject;
     }
 
+    public NoteBean(int id){
+        this.fileId = id;
+    }
     public String getFileName() {
         return fileName;
     }
