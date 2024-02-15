@@ -2,7 +2,7 @@ package com.example.studyswap.graphiccontroller.cli;
 
 import com.example.studyswap.appcontroller.LogoutController;
 import com.example.studyswap.exception.CommandErrorException;
-import com.example.studyswap.graphiccontroller.SellNotesGUIController;
+import com.example.studyswap.exception.NotImplementedException;
 import com.example.studyswap.viewcli.SellerViewCLI;
 
 public class SellerCLIController implements GraphicCLIController{
@@ -18,7 +18,7 @@ public class SellerCLIController implements GraphicCLIController{
         this.sellerViewCLI.run();
     }
 
-    public void executeCommand(String inputLine) throws CommandErrorException{
+    public void executeCommand(String inputLine) throws CommandErrorException, NotImplementedException{
         switch (inputLine){
             case SELL_NOTES -> {
                 SellNotesCLIController sellNotesCLIController = new SellNotesCLIController();
@@ -27,8 +27,11 @@ public class SellerCLIController implements GraphicCLIController{
                 this.start();
             }
 
-            case VIEW_UPLOADED_NOTES -> {
-                //TODO
+            case VIEW_UPLOADED_NOTES-> {
+                UploadedCLIController uploadedCLIController = new UploadedCLIController();
+                uploadedCLIController.start();
+
+                this.start();
             }
 
             case LOGOUT -> {

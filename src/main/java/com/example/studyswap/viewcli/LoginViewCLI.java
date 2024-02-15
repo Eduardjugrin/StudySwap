@@ -39,7 +39,7 @@ public class LoginViewCLI {
     public void getCredentials(){
         Scanner scanner = new Scanner(System.in);
 
-        Printer.printMessage("\nInterst email: ");
+        Printer.printMessage("\nInsert email: ");
         String email = scanner.nextLine();
 
         Printer.printMessage("\nInsert password: ");
