@@ -1,6 +1,7 @@
 package com.example.studyswap.graphiccontroller.cli;
 
 import com.example.studyswap.DAO.NoteDAOJDBC;
+import com.example.studyswap.appcontroller.PurchasedController;
 import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.engineering.Singleton.Session;
 import com.example.studyswap.engineering.observer.Printer;
@@ -30,9 +31,11 @@ public class PurchasedNotesCLIController {
     }
 
     public void showPurchasedNotes(){
-        purchasedNotes = NoteDAOJDBC.getPurchasedNotes(Session.getCurrentSession().getBuyerBean().getEmail());
+        PurchasedController purchasedController = new PurchasedController();
+        List<Note> allNotes = purchasedController.getPurchasedNotes();
 
-        for (Note note : purchasedNotes){
+
+        for (Note note : allNotes){
             Printer.printMessage(i + "| Name: " + note.getFileName() + "| Subject: " + note.getSubject() + "Author: " + note.getAuthor());
             Printer.printMessage("--------------------------------------------------------------------");
             i++;

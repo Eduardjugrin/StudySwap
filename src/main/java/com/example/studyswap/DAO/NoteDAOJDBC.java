@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoteDAOJDBC implements NoteDAO {
+public class NoteDAOJDBC extends NoteDAO {
     private static final String FILE_ID = "id";
     private static final String FILE_NAME = "fileName";
     private static final String EXTENSION = "extension";
@@ -195,7 +195,8 @@ public class NoteDAOJDBC implements NoteDAO {
         }
     }
 
-    public static List<Note> getPurchasedNotes(String buyerEmail){
+
+    public List<Note> getPurchasedNotes(String buyerEmail){
         Connection connection;
 
         List<Note> purchasedNoteList = new ArrayList<>();

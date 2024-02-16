@@ -2,6 +2,7 @@ package com.example.studyswap.graphiccontroller;
 
 import com.example.studyswap.DAO.NoteDAOJDBC;
 import com.example.studyswap.Main;
+import com.example.studyswap.appcontroller.PurchasedController;
 import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.engineering.Singleton.Session;
 import com.example.studyswap.exception.NotFoundException;
@@ -28,7 +29,8 @@ public class PurchasedNotesGUIController {
 
     public void initialize() throws NotFoundException, IOException {
 
-        List<Note> allNotes = NoteDAOJDBC.getPurchasedNotes(Session.getCurrentSession().getBuyerBean().getEmail());
+        PurchasedController purchasedController = new PurchasedController();
+        List<Note> allNotes = purchasedController.getPurchasedNotes();
 
         // Popola la GridPane con i dati degli appunti
         int row = 1;

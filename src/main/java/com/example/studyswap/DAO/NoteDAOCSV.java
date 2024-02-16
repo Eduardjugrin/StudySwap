@@ -1,72 +1,48 @@
-//package com.example.StudySwap.DAO;
-//
-//import com.example.StudySwap.exception.AuthorNotFoundException;
-//import com.example.StudySwap.engineering.observer.Printer;
-//import com.example.StudySwap.model.Note;
-//
-//import java.io.BufferedReader;
-//import java.io.FileReader;
-//import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-////gestione dell'accesso ai dati degli appunti
-//public class NoteDAOCSV implements NoteDAO{
-//    //percorso per il file CSV
-//    private static final String CSV_FILE_NAME = "src/main/java/res/notes.csv";
-//
-//    //indici delle colonne del file csv
-//    private static final int TITLE = 0;
-//    private static final int PATH = 1;
-//    private static final int AUTHOR = 2;
-//    private static final int PRICE = 3;
-//
-//
-//    @Override
-//    public List<Note> getAllNotes(){
-//        List<Note> notes = new ArrayList<>();
-//
-//        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(CSV_FILE_NAME))){
-//            String row;
-//            String [] data;
-//
-//            while((row= bufferedReader.readLine()) != null){
-//                data = row.split(",");
-//
-//                Note note = new Note(data[TITLE],data[PATH], data[AUTHOR], data[PRICE]);
-//                notes.add(note);
-//            }
-//        }catch(IOException e){
-//            Printer.printError(e.getMessage());
-//        }
-//        return notes;
-//    }
-//
-//
-//    @Override
-//    public List<Note> getNotesByAuthor(String author) throws AuthorNotFoundException {
-//        List<Note> notesByAuthor = new ArrayList<>();
-//        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(CSV_FILE_NAME))){
-//            String row;
-//            String[] data;
-//
-//            while((row = bufferedReader.readLine()) != null){
-//                data = row.split(",");
-//                if(data[AUTHOR].equals(author)){
-//                    Note note = new Note(data[TITLE]
-////                            ,data[PATH], data[AUTHOR], data[PRICE]
-//                    );
-//                    notesByAuthor.add(note);
-//                }
-//            }
-//
-//            if(notesByAuthor.isEmpty()){
-//                throw new AuthorNotFoundException();
-//            }
-//
-//        }catch(IOException e){
-//            Printer.printError(e.getMessage());
-//        }
-//        return notesByAuthor;
-//    }
-//}
+package com.example.studyswap.DAO;
+
+import com.example.studyswap.DAO.NoteDAO;
+import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.exception.NotFoundException;
+import com.example.studyswap.model.Note;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+//gestione dell'accesso ai dati degli appunti
+public class NoteDAOCSV extends NoteDAO {
+    private static final String CSV_FILE_PATH = "src/main/java/res/purchased.csv";
+    private static final int ID = 0;
+    private static final int BUYER_EMAIL = 1;
+    private static final int FILE_ID = 2;
+    private static final int PURCHASE_TIME = 3;
+
+    public List<Note> getPurchasedNotes(String buyerEmail) {
+        List<Note> purchasedNotes = new ArrayList<>();
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(CSV_FILE_PATH))) {
+            String row;
+            String[] data;
+
+            while ((row = bufferedReader.readLine()) != null) {
+
+                data = row.split(",");
+
+                if (data[BUYER_EMAIL].equals(buyerEmail)) {
+                    purchasedNotes.add(getNoteById(Integer.parseInt(data[FILE_ID])));
+                }
+            }
+        } catch (IOException | SQLException e) {
+            Printer.printError(e.getMessage());
+        }
+
+        return purchasedNotes;
+    }
+
+}
