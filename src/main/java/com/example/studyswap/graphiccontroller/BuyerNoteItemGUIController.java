@@ -3,6 +3,7 @@ package com.example.studyswap.graphiccontroller;
 import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.appcontroller.PurchaseController;
 import com.example.studyswap.bean.NoteBean;
+import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.engineering.observer.ShowExceptionSupport;
 import javafx.fxml.FXML;
@@ -39,13 +40,15 @@ public class BuyerNoteItemGUIController {
     public void buyNotes() {
         try {
             boolean isAlreadyPurchased = NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId());
+            boolean purchaseSuccessful = PurchaseController.buyNote(noteBean);
+
             if (isAlreadyPurchased) {
-                ShowExceptionSupport.showException("You Have already bought these notes");
-            } else if (PurchaseController.buyNote(noteBean)) {
-                ShowExceptionSupport.showException("Notes purchased successfully");
+                ShowExceptionSupport.showExcpetionCLI("You Have already bought these notes");
+            } else if (purchaseSuccessful) {
+                Printer.printMessage("Notes purchased successfully");
             }
         } catch (Exception e) {
-            ShowExceptionSupport.showException("Something went wrong.\n Try again.");
+            ShowExceptionSupport.showExcpetionCLI("Something went wrong.\n Try again.");
         }
 
     }

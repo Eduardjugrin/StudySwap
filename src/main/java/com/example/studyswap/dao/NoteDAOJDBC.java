@@ -3,6 +3,7 @@ package com.example.studyswap.dao;
 import com.example.studyswap.connection.ConnectionDB;
 import com.example.studyswap.dao.queries.RetrieveQueries;
 import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.exception.AlreadyPurchasedException;
 import com.example.studyswap.exception.DuplicateNoteException;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
@@ -135,7 +136,6 @@ public class NoteDAOJDBC extends NoteDAO {
         String fileName = resultSet.getString(FILE_NAME);
         String extension = resultSet.getString(EXTENSION);
         byte[] content = resultSet.getBytes(CONTENT);
-        String uploaderEmail = resultSet.getString(UPLOADER_EMAIL);
         double price = resultSet.getDouble(PRICE);
         String subject = resultSet.getString(SUBJECT);
         String author = resultSet.getString(FIRST_NAME) + " " + resultSet.getString(LAST_NAME);
@@ -185,6 +185,10 @@ public class NoteDAOJDBC extends NoteDAO {
         try {
             connection = ConnectionDB.getConnection();
 
+            if(isNotePurchased(buyerEmail, fileId)){
+                return true;
+            }
+
             try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO purchased (buyerEmail, fileId) VALUES (?,?)")) {
 
                 preparedStatement.setString(1, buyerEmail);
@@ -202,8 +206,9 @@ public class NoteDAOJDBC extends NoteDAO {
     }
 
     public static boolean isNotePurchased(String buyerEmail, int fileId) {
-        boolean isPurchased;
+        boolean isPurchased = false;
         Connection connection;
+
         try {
             connection = ConnectionDB.getConnection();
 

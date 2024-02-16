@@ -63,7 +63,6 @@ public abstract class NoteDAO {
         String fileName = resultSet.getString(FILE_NAME);
         String extension = resultSet.getString(EXTENSION);
         byte[] content = resultSet.getBytes(CONTENT);
-        String uploaderEmail = resultSet.getString(UPLOADER_EMAIL);
         double price = resultSet.getDouble(PRICE);
         String subject = resultSet.getString(SUBJECT);
         String author = resultSet.getString(FIRST_NAME) + " " + resultSet.getString(LAST_NAME);

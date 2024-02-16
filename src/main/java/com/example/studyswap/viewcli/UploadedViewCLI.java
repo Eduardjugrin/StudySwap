@@ -22,7 +22,6 @@ public class UploadedViewCLI {
         uploadedCLIController.showUploadedNotes();
 
         Printer.printMessage("select a note");
-        int choice = uploadedCLIController.getChoice();
 
         Printer.printMessage("1) Edit details\n" +
                 "2)View reviews");
