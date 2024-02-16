@@ -61,11 +61,12 @@ public class NoteDAOJDBC extends NoteDAO {
         Connection connection;
         Note note = null;
 
+        ResultSet resultSet = null;
         try {
 
             connection = ConnectionDB.getConnection();
 
-            ResultSet resultSet = RetrieveQueries.retrieveAllNotes(connection);
+            resultSet = RetrieveQueries.retrieveAllNotes(connection);
 
             if (!resultSet.first()) {
                 throw new NotFoundException("no notes found");
@@ -77,10 +78,17 @@ public class NoteDAOJDBC extends NoteDAO {
                 noteList.add(note);
             } while (resultSet.next());
 
-            resultSet.close();
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                Printer.printError(e.getMessage());
+            }
         }
         return noteList;
     }
@@ -110,6 +118,14 @@ public class NoteDAOJDBC extends NoteDAO {
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                Printer.printError(e.getMessage());
+            }
         }
 
         return notesByAuthorList;
@@ -142,15 +158,23 @@ public class NoteDAOJDBC extends NoteDAO {
 
     private static boolean fileExists(Connection connection, String fileName) throws SQLException {
         String sql = "SELECT COUNT(*) FROM files WHERE fileName = ?";
-
+        ResultSet resultSet = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, fileName);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            try {
+                resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
                     int count = resultSet.getInt(1);
                     return count > 0;
                 }
-                resultSet.close();
+            }finally{
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                } catch (SQLException e) {
+                    Printer.printError(e.getMessage());
+                }
             }
         }
         return false;
@@ -204,20 +228,30 @@ public class NoteDAOJDBC extends NoteDAO {
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
             return false;
+        }finally{
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                Printer.printError(e.getMessage());
+            }
         }
     }
 
 
-    public List<Note> getPurchasedNotes(String buyerEmail){
+    public List<Note> getPurchasedNotes(String buyerEmail) {
         Connection connection;
 
         List<Note> purchasedNoteList = new ArrayList<>();
         Note note = null;
 
-        try{
+        ResultSet resultSet = null;
+
+        try {
             connection = ConnectionDB.getConnection();
 
-            ResultSet resultSet = RetrieveQueries.retrieveAllPurchasedNotes(connection, buyerEmail);
+            resultSet = RetrieveQueries.retrieveAllPurchasedNotes(connection, buyerEmail);
 
             if (!resultSet.first()) {
                 throw new NotFoundException("no notes found");
@@ -230,32 +264,19 @@ public class NoteDAOJDBC extends NoteDAO {
             } while (resultSet.next());
 
             resultSet.close();
-        }catch(SQLException | NotFoundException e){
+        } catch (SQLException | NotFoundException e) {
             Printer.printError(e.getMessage());
+        }finally{
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                Printer.printError(e.getMessage());
+            }
         }
 
         return purchasedNoteList;
     }
 
-    public static byte[] getFileData(int fileId) throws NotFoundException{
-        Connection connection;
-        PreparedStatement preparedStatement;
-
-        byte[] pdfData = null;
-        try{
-            connection = ConnectionDB.getConnection();
-
-            ResultSet resultSet = RetrieveQueries.retrieveFile(connection, fileId);
-
-            if (resultSet.next()) {
-                pdfData = resultSet.getBytes("content");
-            }
-
-            resultSet.close();
-
-        }catch(SQLException e){
-            Printer.printError(e.getMessage());
-        }
-        return pdfData;
-    }
 }
