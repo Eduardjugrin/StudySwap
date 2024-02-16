@@ -6,7 +6,6 @@ import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
 import com.example.studyswap.viewcli.PurchasedNotesViewCLI;
-import org.apache.commons.io.IOUtils;
 
 import java.awt.*;
 import java.io.*;
