@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class BuyNotesCLIController {
     private List<Note> allNotes;
     private BuyNotesViewCLI buyNotesViewCLI;
-    public int i;
+    public static int i;
 
     public void start() throws NotFoundException, SQLException {
         i = 1;
@@ -40,10 +40,9 @@ public class BuyNotesCLIController {
     public int askForChoice(){
         Printer.printMessage("Select the notes you want to buy");
         Scanner scanner = new Scanner(System.in);
-        int inputLine = scanner.nextInt();
-        return inputLine;
+        return scanner.nextInt();
     }
-    public void buyNote(int choice) throws SQLException {
+    public void buyNote(int choice)  {
 
         Note note = allNotes.get(choice);
 
@@ -51,7 +50,6 @@ public class BuyNotesCLIController {
 
         if(NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId())){
             ShowExceptionSupport.showExcpetionCLI("You Have already bought these notes");
-            return;
         } else if (PurchaseController.buyNote(noteBean)) {
             Printer.printMessage("Notes purchased successfully!");
             Printer.printMessage("PRESS ENTER TO CONTINUE");

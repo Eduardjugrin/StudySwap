@@ -23,7 +23,7 @@ public class PurchasedNotesGUIController {
     @FXML
     private GridPane grid;
 
-    private String BUYER_HP = "/fxml/buyerHomePage.fxml";
+    private static final String BUYER_HP = "/fxml/buyerHomePage.fxml";
 
     public void initialize() throws NotFoundException, IOException {
 

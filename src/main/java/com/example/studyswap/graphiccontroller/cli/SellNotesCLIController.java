@@ -50,14 +50,12 @@ public class SellNotesCLIController {
 
     public double setPrice(){
         Scanner scanner = new Scanner(System.in);
-        double inputLine = scanner.nextDouble();
-        return inputLine;
+        return scanner.nextDouble();
     }
 
     public String setSubject(){
         Scanner scanner = new Scanner(System.in);
-        String inputLine = scanner.nextLine();
-        return inputLine;
+        return scanner.nextLine();
     }
 
     public void uploadFile(File selectedFile, String subject, double price){

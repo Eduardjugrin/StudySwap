@@ -66,15 +66,15 @@ public class LoginGUIController {
     }
 
     //per effettuare login teramite facebook, google e creare un account
-    public void facebookLogin() throws IOException{
+    public void facebookLogin(){
         ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 
-    public void googleLogin() throws IOException{
+    public void googleLogin(){
         ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 
-    public void createNewAccount() throws IOException{
+    public void createNewAccount(){
         ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 }

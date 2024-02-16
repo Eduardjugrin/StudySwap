@@ -18,7 +18,7 @@ public class SellerCLIController implements GraphicCLIController{
         this.sellerViewCLI.run();
     }
 
-    public void executeCommand(String inputLine) throws CommandErrorException, NotImplementedException{
+    public void executeCommand(String inputLine) throws CommandErrorException{
         switch (inputLine){
             case SELL_NOTES -> {
                 SellNotesCLIController sellNotesCLIController = new SellNotesCLIController();

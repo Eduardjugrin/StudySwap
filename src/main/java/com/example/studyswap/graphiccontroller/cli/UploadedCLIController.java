@@ -43,7 +43,7 @@ public class UploadedCLIController {
                 }
             }
 
-        } catch (NotFoundException e) {
+        } catch (Exception e) {
             Printer.printError(e.getMessage());
         }
     }

@@ -36,7 +36,7 @@ public class PurchasedNoteItemGUIController {
         authorLabel.setText(String.valueOf(setNote.getAuthor()));
     }
 
-    public void viewNotes() throws IOException, InterruptedException {
+    public void viewNotes(){
 
         File tempFile = null;
 

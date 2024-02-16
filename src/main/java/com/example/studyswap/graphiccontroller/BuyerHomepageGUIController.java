@@ -27,7 +27,7 @@ public class BuyerHomepageGUIController {
     @FXML
     private Label welcomeLabel;
 
-    private final String PURCHASED_NOTES = "/fxml/purchasedNotes.fxml";
+    private static final String PURCHASED_NOTES = "/fxml/purchasedNotes.fxml";
 
     public void initialize() throws IOException, NotFoundException {
         welcomeLabel.setText("Welcome in your Homepage " + Session.getCurrentSession().getBuyerBean().getFirstName());

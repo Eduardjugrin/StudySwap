@@ -33,7 +33,7 @@ public class SellerHomepageGUIController{
     private Label welcome;
 
     private SellerBean sellerBean;
-    private static String SELL_NOTES = "/fxml/sellNotesPage.fxml";
+    private static final String SELL_NOTES = "/fxml/sellNotesPage.fxml";
 
     public void initialize() throws IOException, NotFoundException {
         welcome.setText("Welcome in your Homepage "+Session.getCurrentSession().getSellerBean().getFirstName());

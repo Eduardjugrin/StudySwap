@@ -43,8 +43,7 @@ public class PurchasedNotesCLIController {
     public int askForChoice(){
         Printer.printMessage("Select the notes you want to view");
         Scanner scanner = new Scanner(System.in);
-        int inputLine = scanner.nextInt();
-        return inputLine;
+        return scanner.nextInt();
     }
 
     public void openFile(int choice) throws IOException{

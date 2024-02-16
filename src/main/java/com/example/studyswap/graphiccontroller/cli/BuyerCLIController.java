@@ -22,7 +22,7 @@ public class BuyerCLIController implements GraphicCLIController{
         this.buyerViewCLI.run();
     }
 
-    public void executeCommand(String inputLine) throws CommandErrorException, NotFoundException, NotImplementedException, SQLException {
+    public void executeCommand(String inputLine) throws CommandErrorException, NotFoundException, SQLException {
         switch(inputLine){
             case BUY_NOTES -> {
                 BuyNotesCLIController buyNotesCLIController = new BuyNotesCLIController();

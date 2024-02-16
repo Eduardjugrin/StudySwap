@@ -30,11 +30,11 @@ public class SellerNoteItemGUIController {
         priceLabel.setText("€" + String.format("%.2f", note.getPrice()));
     }
 
-    public void editNoteDetails() throws IOException{
+    public void editNoteDetails(){
         ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 
-    public void viewReviews() throws IOException{
+    public void viewReviews(){
         ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 }
