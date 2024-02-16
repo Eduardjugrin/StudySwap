@@ -20,6 +20,6 @@ public class Printer {
 
     //stampa messaggio nella console standard di output
     public static void printMessage(String message){
-        log.info(message);
+        System.out.println(message);
     }
 }

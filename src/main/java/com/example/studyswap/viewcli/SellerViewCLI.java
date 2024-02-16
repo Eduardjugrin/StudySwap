@@ -18,14 +18,14 @@ public class SellerViewCLI {
         Printer.printMessage("\n--------SELLER HOMEPAGE--------");
         Printer.printMessage("1) Sell your notes\n" +
                 "2) View yout notes\n" +
-                "5) Logout");
+                "3) Logout");
 
         Scanner scanner = new Scanner(System.in);
         String inputLine = scanner.nextLine();
 
         try{
             this.sellerCLIController.executeCommand(inputLine);
-        }catch(CommandErrorException | NotImplementedException e){
+        }catch(CommandErrorException e){
             Printer.printMessage(e.getMessage());
             run();
         }

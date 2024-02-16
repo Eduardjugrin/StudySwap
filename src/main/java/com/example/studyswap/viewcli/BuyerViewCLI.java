@@ -28,7 +28,7 @@ public class BuyerViewCLI {
 
         try{
             this.buyerCLIController.executeCommand(inputLine);
-        }catch(CommandErrorException | NotImplementedException | NotFoundException | SQLException e){
+        }catch(CommandErrorException | NotFoundException | SQLException e){
             ShowExceptionSupport.showExcpetionCLI(e.getMessage());
             run();
         }

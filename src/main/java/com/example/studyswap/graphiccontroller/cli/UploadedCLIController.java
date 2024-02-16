@@ -53,7 +53,7 @@ public class UploadedCLIController {
     }
 
     public void executeCommand(int selectedFile, String inputLine) throws CommandErrorException, NotImplementedException {
-        if (inputLine == EDIT_DETAILS || inputLine == VIEW_REVIEWS) {
+        if (inputLine.equals(EDIT_DETAILS) || inputLine.equals(VIEW_REVIEWS)) {
             throw new NotImplementedException();
         } else {
             throw new CommandErrorException();

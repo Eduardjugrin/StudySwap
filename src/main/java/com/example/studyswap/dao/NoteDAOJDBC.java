@@ -24,9 +24,9 @@ public class NoteDAOJDBC extends NoteDAO {
     private static final String LAST_NAME = "lastName";
 
     public static void uploadFile(Note note, String sellerEmail) throws DuplicateNoteException {
-
-        try (Connection connection = ConnectionDB.getConnection()) {
-
+        Connection connection;
+        try {
+            connection = ConnectionDB.getConnection();
 
             if (note == null) {
                 throw new IllegalArgumentException("Note object cannot be null");
@@ -54,7 +54,7 @@ public class NoteDAOJDBC extends NoteDAO {
     }
 
 
-    public static List<Note> getAllNotes() throws NotFoundException{
+    public static List<Note> getAllNotes() throws NotFoundException {
 
         List<Note> noteList = new ArrayList<>();
         Connection connection;
@@ -204,8 +204,9 @@ public class NoteDAOJDBC extends NoteDAO {
     public static boolean isNotePurchased(String buyerEmail, int fileId) {
         boolean isPurchased;
 
-        try (Connection connection = ConnectionDB.getConnection()) {
-
+        Connection connection;
+        try {
+            connection = ConnectionDB.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM purchased WHERE buyerEmail = ? AND fileId = ? ");
             preparedStatement.setString(1, buyerEmail);
