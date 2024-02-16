@@ -54,6 +54,7 @@ public abstract class NoteDAO {
             resultSet.next();
             note = setFileData(resultSet);
 
+            resultSet.close();
         }catch(SQLException e){
             Printer.printMessage(e.getMessage());
         }

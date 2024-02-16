@@ -48,6 +48,7 @@ public class NoteDAOJDBC extends NoteDAO {
             preparedStatement.setString(6, note.getSubject().toLowerCase());
 
             preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             Printer.printError("Error uploading file: " + e.getMessage());
         }
@@ -76,6 +77,7 @@ public class NoteDAOJDBC extends NoteDAO {
                 noteList.add(note);
             } while (resultSet.next());
 
+            resultSet.close();
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
@@ -103,6 +105,8 @@ public class NoteDAOJDBC extends NoteDAO {
                 note = setSellerFileData(resultSet);
                 notesByAuthorList.add(note);
             } while (resultSet.next());
+
+            resultSet.close();
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
@@ -146,6 +150,7 @@ public class NoteDAOJDBC extends NoteDAO {
                     int count = resultSet.getInt(1);
                     return count > 0;
                 }
+                resultSet.close();
             }
         }
         return false;
@@ -166,6 +171,8 @@ public class NoteDAOJDBC extends NoteDAO {
 
             int rowsInserted = preparedStatement.executeUpdate();
             return rowsInserted > 0;
+
+
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
             return false;
@@ -176,6 +183,7 @@ public class NoteDAOJDBC extends NoteDAO {
         Connection connection;
 
         ResultSet resultSet = null;
+        boolean isPurchased;
 
         try {
             connection = ConnectionDB.getConnection();
@@ -187,7 +195,11 @@ public class NoteDAOJDBC extends NoteDAO {
 
             resultSet = preparedStatement.executeQuery();
 
-            return resultSet.next();
+            isPurchased = resultSet.next();
+
+            resultSet.close();
+
+            return isPurchased;
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
@@ -217,6 +229,7 @@ public class NoteDAOJDBC extends NoteDAO {
                 purchasedNoteList.add(note);
             } while (resultSet.next());
 
+            resultSet.close();
         }catch(SQLException | NotFoundException e){
             Printer.printError(e.getMessage());
         }
@@ -238,6 +251,7 @@ public class NoteDAOJDBC extends NoteDAO {
                 pdfData = resultSet.getBytes("content");
             }
 
+            resultSet.close();
 
         }catch(SQLException e){
             Printer.printError(e.getMessage());
