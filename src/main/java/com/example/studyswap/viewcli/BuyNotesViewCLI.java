@@ -15,7 +15,7 @@ public class BuyNotesViewCLI {
         this.buyNotesCLIController = buyNotesCLIController;
     }
 
-    public void run() throws SQLException, NotFoundException{
+    public static void run(BuyNotesCLIController buyNotesCLIController) throws SQLException, NotFoundException{
         Printer.printMessage("-------BUY NOTES--------");
 
         try {

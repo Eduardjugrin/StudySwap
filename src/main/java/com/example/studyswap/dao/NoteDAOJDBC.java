@@ -3,7 +3,6 @@ package com.example.studyswap.dao;
 import com.example.studyswap.connection.ConnectionDB;
 import com.example.studyswap.dao.queries.RetrieveQueries;
 import com.example.studyswap.engineering.observer.Printer;
-import com.example.studyswap.exception.AlreadyPurchasedException;
 import com.example.studyswap.exception.DuplicateNoteException;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
@@ -197,8 +196,7 @@ public class NoteDAOJDBC extends NoteDAO {
                 int rowsInserted = preparedStatement.executeUpdate();
                 return rowsInserted > 0;
             }
-        } catch (
-                SQLException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
             return false;
         }

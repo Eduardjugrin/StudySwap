@@ -22,7 +22,7 @@ public class BuyNotesCLIController {
     public void start() throws NotFoundException, SQLException {
         setI(1);
         this.buyNotesViewCLI = new BuyNotesViewCLI(this);
-        this.buyNotesViewCLI.run();
+        this.buyNotesViewCLI.run(this);
 
     }
 
