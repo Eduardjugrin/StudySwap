@@ -33,7 +33,7 @@ public class BuyNotesCLIController {
         for(Note note : allNotes){
             Printer.printMessage(i + "| Name: " + note.getFileName() + "| Subject: " + note.getSubject() + "Author: " + note.getAuthor());
             Printer.printMessage("--------------------------------------------------------------------");
-            i++;
+            increaseIndex();
         }
     }
 

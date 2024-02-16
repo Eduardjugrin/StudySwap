@@ -27,8 +27,8 @@ public class BuyNotesViewCLI {
         }
 
         int choice = buyNotesCLIController.askForChoice();
-
-        if(choice-- > buyNotesCLIController.getI()){
+        int index = buyNotesCLIController.getI();
+        if(choice-- > index){
             ShowExceptionSupport.showExcpetionCLI("Invalid number");
             buyNotesCLIController.start();
         }else{
