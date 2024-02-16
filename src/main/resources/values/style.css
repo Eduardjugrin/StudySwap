@@ -3,18 +3,16 @@
 #f4f0d2: panna
 */
 
-BorderPane{
+.root {
     -fx-background-color: #f4f0d2;
 }
+
 .primary-color{
     -fx-background-color: #ffffff;
 }
 
-AnchorPane{
+AnchorPane {
     -fx-background-color: #f4f0d2;
-}
-.primary-color{
-     -fx-background-color: #ffffff;
 }
 
 .Label {
@@ -62,7 +60,7 @@ AnchorPane{
     -fx-cursor: hand;
 }
 
-Spinner{
+#priceSpinner {
     -fx-background-color: rgba(0,0,0,0);
 
     -fx-border-width: 0 0 1 0;
@@ -115,6 +113,6 @@ Spinner{
     -fx-min-width: 5px;
 }
 
-RowConstraints{
+#grid{
     -fx-background-color: #f4f0d2;
 }
