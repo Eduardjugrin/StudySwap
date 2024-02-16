@@ -8,8 +8,12 @@ import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.io.*;
-import java.nio.file.Files;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.channels.OverlappingFileLockException;
+import java.nio.file.*;
 import java.security.Security;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -39,27 +43,16 @@ public class PurchasedNoteItemGUIController {
     public void viewNotes(){
 
         File tempFile = null;
-
         try {
             byte[] pdfData = noteBean.getContent();
-
             if (pdfData != null) {
-
-                    tempFile = File.createTempFile("tempFile", ".pdf");
-                    Files.write(tempFile.toPath(), pdfData);
-
-                    Desktop.getDesktop().open(tempFile);
-
-                    //todo
-
-                }
+                tempFile = File.createTempFile("tempFile", ".pdf");
+                Files.write(tempFile.toPath(), pdfData);
+                Desktop.getDesktop().open(tempFile);
             }
+        }
         catch (IOException | SecurityException e) {
             Printer.printError(e.getMessage());
-        } finally {
-            if (!tempFile.delete()) {
-                Printer.printMessage("An error ocured while deleting tempDir");
-            }
         }
     }
 
@@ -70,5 +63,6 @@ public class PurchasedNoteItemGUIController {
     public void leaveReview() {
         ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
+
 }
 

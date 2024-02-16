@@ -10,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -49,37 +50,17 @@ public class PurchasedNotesCLIController {
     public void openFile(int choice) throws IOException{
 
         noteBean = new NoteBean(purchasedNotes.get(choice).getFileID(), purchasedNotes.get(choice).getFileName(), purchasedNotes.get(choice).getExtension(), purchasedNotes.get(choice).getContent(), purchasedNotes.get(choice).getPrice(), purchasedNotes.get(choice).getSubject(), purchasedNotes.get(choice).getAuthor());
-
-        String tempDirPath = System.getProperty("java.io.tmpdir");
-        File tempDir = new File(tempDirPath + File.separator + "my_apptemp");
-        tempDir.mkdirs();
-        File.createTempFile(noteBean.getFileName(), ".pdf");
-
-
-        try{
-            File tempFile = File.createTempFile(noteBean.getFileName(), ".pdf", tempDir);
-            tempFile.deleteOnExit();
+        File tempFile = null;
+        try {
             byte[] pdfData = noteBean.getContent();
-
-
-            if(pdfData != null){
-                try(InputStream inputStream = new ByteArrayInputStream(pdfData)){
-
-                    try(FileOutputStream fos = new FileOutputStream(tempFile)){
-                        IOUtils.copy(inputStream, fos);
-                        Desktop.getDesktop().open(tempFile);
-
-                        //todo
-                    }
-                }
+            if (pdfData != null) {
+                tempFile = File.createTempFile("tempFile", ".pdf");
+                Files.write(tempFile.toPath(), pdfData);
+                Desktop.getDesktop().open(tempFile);
             }
-
-        }catch(IOException | SecurityException e){
+        }
+        catch (IOException | SecurityException e) {
             Printer.printError(e.getMessage());
-        }finally {
-            if(!tempDir.delete()){
-                Printer.printError("an error occured deleting tempDir");
-            }
         }
     }
 
