@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class BuyNotesCLIController {
     private List<Note> allNotes;
     private BuyNotesViewCLI buyNotesViewCLI;
-    public static int i;
+    private static int i;
 
     public void start() throws NotFoundException, SQLException {
         i = 1;
@@ -55,5 +55,13 @@ public class BuyNotesCLIController {
             Printer.printMessage("PRESS ENTER TO CONTINUE");
             ScannerSupport.waitEnter();
         }
+    }
+
+    public static int getI() {
+        return i;
+    }
+
+    public static void setI(int i) {
+        BuyNotesCLIController.i = i;
     }
 }

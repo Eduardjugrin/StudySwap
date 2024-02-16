@@ -3,7 +3,6 @@ package com.example.studyswap.graphiccontroller.cli;
 import com.example.studyswap.appcontroller.LogoutController;
 import com.example.studyswap.exception.CommandErrorException;
 import com.example.studyswap.exception.NotFoundException;
-import com.example.studyswap.exception.NotImplementedException;
 import com.example.studyswap.viewcli.BuyerViewCLI;
 
 import java.sql.SQLException;

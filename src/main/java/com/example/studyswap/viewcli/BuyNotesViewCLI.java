@@ -28,13 +28,13 @@ public class BuyNotesViewCLI {
 
         int choice = buyNotesCLIController.askForChoice();
 
-        if(choice-- > buyNotesCLIController.i){
+        if(choice-- > buyNotesCLIController.getI()){
             ShowExceptionSupport.showExcpetionCLI("Invalid number");
             buyNotesCLIController.start();
         }else{
             try{
                 buyNotesCLIController.buyNote(choice);
-            }catch(SQLException e){
+            }catch(Exception e){
                 ShowExceptionSupport.showExcpetionCLI(e.getMessage());
                 buyNotesCLIController.start();
             }

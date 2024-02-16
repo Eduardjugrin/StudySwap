@@ -4,7 +4,6 @@ import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.exception.CommandErrorException;
-import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.exception.NotImplementedException;
 import com.example.studyswap.model.Note;
 import com.example.studyswap.viewcli.UploadedViewCLI;
@@ -21,7 +20,7 @@ public class UploadedCLIController {
 
     UploadedViewCLI uploadedViewCLI;
 
-    public static int i;
+    private static int i;
 
     public void start() {
         i = 1;
@@ -50,15 +49,24 @@ public class UploadedCLIController {
 
     public int getChoice(){
         Scanner scanner = new Scanner(System.in);
-        int inputLine = scanner.nextInt();
-        return inputLine;
+        return scanner.nextInt();
     }
 
-    public void executeCommand(String inputLine) throws CommandErrorException, NotImplementedException {
-        switch (inputLine){
-            case EDIT_DETAILS, VIEW_REVIEWS -> throw new NotImplementedException();
-
-            default -> throw new CommandErrorException();
+    public void executeCommand(int selectedFile, String inputLine) throws CommandErrorException, NotImplementedException {
+        if (inputLine == EDIT_DETAILS || inputLine == VIEW_REVIEWS) {
+            throw new NotImplementedException();
+        } else {
+            throw new CommandErrorException();
         }
+
     }
+
+    public static int getI() {
+        return i;
+    }
+
+    public static void setI(int i) {
+        UploadedCLIController.i = i;
+    }
+
 }

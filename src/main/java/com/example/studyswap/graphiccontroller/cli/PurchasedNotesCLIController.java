@@ -20,7 +20,7 @@ public class PurchasedNotesCLIController {
 
     private NoteBean noteBean = null;
 
-    public static int i;
+    private static int i;
     public void start() throws NotFoundException, SQLException {
         i = 1;
 
@@ -83,5 +83,11 @@ public class PurchasedNotesCLIController {
         }
     }
 
+    public static int getI() {
+        return i;
+    }
 
+    public static void setI(int i) {
+        PurchasedNotesCLIController.i = i;
+    }
 }

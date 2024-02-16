@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class TestLoginDAO {
+class TestLoginDAO {
 
     /* Verifichiamo che venga ritornato il tipo di ruolo corretto quando
        viene effettuato il login con il profilo di un seller */

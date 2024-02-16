@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestRebuyNotes {
+class TestRebuyNotes {
 
     @Test
     void testBuyNotes() throws SQLException {

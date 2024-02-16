@@ -38,7 +38,8 @@ public class BuyerNoteItemGUIController {
 
     public void buyNotes() {
         try {
-            if (NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId())) {
+            boolean isAlreadyPurchased = NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId());
+            if (isAlreadyPurchased) {
                 ShowExceptionSupport.showException("You Have already bought these notes");
             } else if (PurchaseController.buyNote(noteBean)) {
                 ShowExceptionSupport.showException("Notes purchased successfully");
@@ -46,6 +47,7 @@ public class BuyerNoteItemGUIController {
         } catch (Exception e) {
             ShowExceptionSupport.showException("Something went wrong.\n Try again.");
         }
+
     }
 
     public void setNoteBean(NoteBean noteBean){

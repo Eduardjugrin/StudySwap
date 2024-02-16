@@ -27,7 +27,7 @@ public class PurchasedNoteItemGUIController {
     private NoteBean noteBean;
 
 
-    private String NOT_IMPLEMENTED = "Not implemented yet";
+    private static final String NOT_IMPLEMENTED = "Not implemented yet";
 
     public void setData(NoteBean setNote) {
         noteTitleLabel.setText(String.valueOf(setNote.getFileName()));
