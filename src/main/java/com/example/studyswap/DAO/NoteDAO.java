@@ -39,24 +39,29 @@ public abstract class NoteDAO {
 
         List<Note> notes = new ArrayList<>();
 
-        try{
+        try {
             connection = ConnectionDB.getConnection();
             String sql = "SELECT f.*, u.firstName, u.lastName " +
                     "FROM files f " +
                     "JOIN users u on f.uploaderEmail = u.email " +
                     "WHERE f.id = ?";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, fileId);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            resultSet = preparedStatement.executeQuery();
+                preparedStatement.setInt(1, fileId);
 
-            resultSet.next();
-            note = setFileData(resultSet);
+                resultSet = preparedStatement.executeQuery();
 
-            resultSet.close();
-        }catch(SQLException e){
+                if (resultSet.next()) {
+                    note = setFileData(resultSet);
+                }
+            }
+        } catch (SQLException e) {
             Printer.printMessage(e.getMessage());
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
         }
         return note;
     }

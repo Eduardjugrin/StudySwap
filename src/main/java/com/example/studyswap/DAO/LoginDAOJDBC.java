@@ -42,8 +42,6 @@ public class LoginDAOJDBC implements LoginDAO {
                 default -> throw new NotFoundException("No role found");
             }
 
-            //chiusura ResultSet
-            resultSet.close();
 
             //creazione ogetto User
             user = new User(email, role);

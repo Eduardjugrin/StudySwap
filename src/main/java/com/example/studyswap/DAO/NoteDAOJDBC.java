@@ -24,10 +24,9 @@ public class NoteDAOJDBC extends NoteDAO {
     private static final String LAST_NAME = "lastName";
 
     public static void uploadFile(Note note, String sellerEmail) throws DuplicateNoteException {
-        Connection connection;
 
-        try {
-            connection = ConnectionDB.getConnection();
+        try (Connection connection = ConnectionDB.getConnection()) {
+
 
             if (note == null) {
                 throw new IllegalArgumentException("Note object cannot be null");
@@ -38,17 +37,17 @@ public class NoteDAOJDBC extends NoteDAO {
             if (fileExists(connection, note.getFileName())) {
                 throw new DuplicateNoteException();
             }
+            try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO files (fileName, extension, content, uploaderEmail, price, subject) VALUES(?, ?, ?, ?, ?, ?)");
+            ) {
+                preparedStatement.setString(1, note.getFileName());
+                preparedStatement.setString(2, note.getExtension());
+                preparedStatement.setBinaryStream(3, new ByteArrayInputStream(note.getContent()));
+                preparedStatement.setString(4, sellerEmail);
+                preparedStatement.setDouble(5, note.getPrice());
+                preparedStatement.setString(6, note.getSubject().toLowerCase());
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO files (fileName, extension, content, uploaderEmail, price, subject) VALUES(?, ?, ?, ?, ?, ?)");
-            preparedStatement.setString(1, note.getFileName());
-            preparedStatement.setString(2, note.getExtension());
-            preparedStatement.setBinaryStream(3, new ByteArrayInputStream(note.getContent()));
-            preparedStatement.setString(4, sellerEmail);
-            preparedStatement.setDouble(5, note.getPrice());
-            preparedStatement.setString(6, note.getSubject().toLowerCase());
-
-            preparedStatement.executeUpdate();
-
+                preparedStatement.executeUpdate();
+            }
         } catch (SQLException e) {
             Printer.printError("Error uploading file: " + e.getMessage());
         }
@@ -167,7 +166,7 @@ public class NoteDAOJDBC extends NoteDAO {
                     int count = resultSet.getInt(1);
                     return count > 0;
                 }
-            }finally{
+            } finally {
                 try {
                     if (resultSet != null) {
                         resultSet.close();
@@ -186,57 +185,43 @@ public class NoteDAOJDBC extends NoteDAO {
         try {
             connection = ConnectionDB.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO purchased (buyerEmail, fileId) VALUES (?,?)");
-            preparedStatement.setString(1, buyerEmail);
-            preparedStatement.setInt(2, fileId);
+            try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO purchased (buyerEmail, fileId) VALUES (?,?)")) {
 
-            preparedStatement.setString(1, buyerEmail);
-            preparedStatement.setInt(2, fileId);
+                preparedStatement.setString(1, buyerEmail);
+                preparedStatement.setInt(2, fileId);
 
-            int rowsInserted = preparedStatement.executeUpdate();
-            return rowsInserted > 0;
-
-
-        } catch (SQLException e) {
+                int rowsInserted = preparedStatement.executeUpdate();
+                return rowsInserted > 0;
+            }
+        } catch (
+                SQLException e) {
             Printer.printError(e.getMessage());
             return false;
         }
+
     }
 
     public static boolean isNotePurchased(String buyerEmail, int fileId) {
-        Connection connection;
-
-        ResultSet resultSet = null;
         boolean isPurchased;
 
-        try {
-            connection = ConnectionDB.getConnection();
+        try (Connection connection = ConnectionDB.getConnection();) {
+
             String sql = "SELECT * FROM purchased WHERE buyerEmail = ? AND fileId = ? ";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, buyerEmail);
             preparedStatement.setInt(2, fileId);
 
-            resultSet = preparedStatement.executeQuery();
-
-            isPurchased = resultSet.next();
-
-            resultSet.close();
-
-            return isPurchased;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isPurchased = resultSet.next();
+            }
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
             return false;
-        }finally{
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                Printer.printError(e.getMessage());
-            }
         }
+        return isPurchased;
+
     }
 
 
@@ -266,7 +251,7 @@ public class NoteDAOJDBC extends NoteDAO {
             resultSet.close();
         } catch (SQLException | NotFoundException e) {
             Printer.printError(e.getMessage());
-        }finally{
+        } finally {
             try {
                 if (resultSet != null) {
                     resultSet.close();
