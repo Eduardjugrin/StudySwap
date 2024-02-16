@@ -31,7 +31,7 @@ public class UploadedViewCLI {
         String inputLine = scanner.nextLine();
 
         try{
-            this.uploadedCLIController.executeCommand(choice, inputLine);
+            this.uploadedCLIController.executeCommand(inputLine);
         }catch(CommandErrorException | NotImplementedException e){
             Printer.printMessage(e.getMessage());
         }

@@ -23,7 +23,7 @@ public class UploadedCLIController {
     private static int i;
 
     public void start() {
-        i = 1;
+        setI(1);
 
         this.uploadedViewCLI = new UploadedViewCLI(this);
         this.uploadedViewCLI.run();
@@ -38,7 +38,7 @@ public class UploadedCLIController {
                 for (Note note : uploadedNotes) {
                     Printer.printMessage(i + "| Name: " + note.getFileName() + "| Subject: " + note.getSubject());
                     Printer.printMessage("--------------------------------------------------------------------");
-                    i++;
+                    increaseIndex();
                 }
             }
 
@@ -47,12 +47,12 @@ public class UploadedCLIController {
         }
     }
 
-    public int getChoice(){
+    public int getChoice() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
-    public void executeCommand(int selectedFile, String inputLine) throws CommandErrorException, NotImplementedException {
+    public void executeCommand( String inputLine) throws CommandErrorException, NotImplementedException {
         if (inputLine.equals(EDIT_DETAILS) || inputLine.equals(VIEW_REVIEWS)) {
             throw new NotImplementedException();
         } else {
@@ -67,6 +67,10 @@ public class UploadedCLIController {
 
     public static void setI(int i) {
         UploadedCLIController.i = i;
+    }
+
+    public static void increaseIndex() {
+        i++;
     }
 
 }

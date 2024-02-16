@@ -22,7 +22,7 @@ public class PurchasedNotesCLIController {
 
     private static int i;
     public void start() throws NotFoundException, SQLException {
-        i = 1;
+        setI(1);
 
         this.purchasedNotesViewCLI = new PurchasedNotesViewCLI(this);
         this.purchasedNotesViewCLI.run();
@@ -36,7 +36,7 @@ public class PurchasedNotesCLIController {
         for (Note note : allNotes){
             Printer.printMessage(i + "| Name: " + note.getFileName() + "| Subject: " + note.getSubject() + "Author: " + note.getAuthor());
             Printer.printMessage("--------------------------------------------------------------------");
-            i++;
+            increaseIndex();
         }
     }
 
@@ -89,5 +89,9 @@ public class PurchasedNotesCLIController {
 
     public static void setI(int i) {
         PurchasedNotesCLIController.i = i;
+    }
+
+    public static void increaseIndex(){
+        i++;
     }
 }

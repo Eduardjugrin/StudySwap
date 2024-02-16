@@ -48,12 +48,15 @@ public class BuyNotesCLIController {
 
         NoteBean noteBean = new NoteBean(note.getFileID(), note.getFileName(), note.getExtension(), note.getContent(), note.getUploaderEmail(), note.getPrice(), note.getSubject());
 
-        if(NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId())){
-            ShowExceptionSupport.showExcpetionCLI("You Have already bought these notes");
-        } else if (PurchaseController.buyNote(noteBean)) {
-            Printer.printMessage("Notes purchased successfully!");
-            Printer.printMessage("PRESS ENTER TO CONTINUE");
-            ScannerSupport.waitEnter();
+        try {
+            boolean isAlreadyPurchased = NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId());
+            if (isAlreadyPurchased) {
+                ShowExceptionSupport.showException("You Have already bought these notes");
+            } else if (PurchaseController.buyNote(noteBean)) {
+                ShowExceptionSupport.showException("Notes purchased successfully");
+            }
+        } catch (Exception e) {
+            ShowExceptionSupport.showException("Something went wrong.\n Try again.");
         }
     }
 
@@ -63,5 +66,9 @@ public class BuyNotesCLIController {
 
     public static void setI(int i) {
         BuyNotesCLIController.i = i;
+    }
+
+    public static void increaseIndex(){
+        i++;
     }
 }
