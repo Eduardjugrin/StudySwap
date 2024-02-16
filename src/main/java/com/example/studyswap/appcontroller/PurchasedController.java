@@ -1,7 +1,7 @@
 package com.example.studyswap.appcontroller;
 
 import com.example.studyswap.dao.NoteDAO;
-import com.example.studyswap.engineering.Singleton.Session;
+import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.engineering.factory.NoteDAOFactory;
 import com.example.studyswap.model.Note;
 

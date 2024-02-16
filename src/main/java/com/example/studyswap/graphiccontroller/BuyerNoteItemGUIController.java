@@ -3,7 +3,7 @@ package com.example.studyswap.graphiccontroller;
 import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.appcontroller.PurchaseController;
 import com.example.studyswap.bean.NoteBean;
-import com.example.studyswap.engineering.Singleton.Session;
+import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.engineering.observer.ShowExceptionSupport;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,11 +40,10 @@ public class BuyerNoteItemGUIController {
         try {
             if(NoteDAOJDBC.isNotePurchased(Session.getCurrentSession().getBuyerBean().getEmail(), noteBean.getFileId())){
                 ShowExceptionSupport.showException("You Have already bought these notes");
-                return;
             } else if (PurchaseController.buyNote(noteBean)) {
                 ShowExceptionSupport.showException("Notes purchased successfully");
             }
-        }catch(SQLException e){
+        }catch(Exception e){
             ShowExceptionSupport.showException("Something went wrong.\n Try again.");
         }
     }

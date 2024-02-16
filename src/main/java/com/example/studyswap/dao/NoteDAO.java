@@ -1,7 +1,7 @@
 package com.example.studyswap.dao;
 
 
-import com.example.studyswap.Connection.ConnectionDB;
+import com.example.studyswap.connection.ConnectionDB;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.model.Note;
 
@@ -23,7 +23,6 @@ public abstract class NoteDAO {
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
 
-    //public List<Note> getAllNotes() throws NotFoundException;
     public abstract List<Note> getPurchasedNotes(String buyerEmail);
 
     public Note getNoteById(int fileId) throws SQLException {
@@ -32,8 +31,6 @@ public abstract class NoteDAO {
         Connection connection;
 
         ResultSet resultSet = null;
-
-        List<Note> notes = new ArrayList<>();
 
         try {
             connection = ConnectionDB.getConnection();

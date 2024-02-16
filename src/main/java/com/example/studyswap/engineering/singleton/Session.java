@@ -1,4 +1,4 @@
-package com.example.studyswap.engineering.Singleton;
+package com.example.studyswap.engineering.singleton;
 
 import com.example.studyswap.bean.BuyerBean;
 import com.example.studyswap.bean.SellerBean;

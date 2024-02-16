@@ -3,7 +3,7 @@ package com.example.studyswap.graphiccontroller;
 import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.Main;
 import com.example.studyswap.bean.SellerBean;
-import com.example.studyswap.engineering.Singleton.Session;
+import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
 import javafx.fxml.FXML;

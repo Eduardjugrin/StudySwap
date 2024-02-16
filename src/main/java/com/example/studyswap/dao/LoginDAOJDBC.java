@@ -1,6 +1,6 @@
 package com.example.studyswap.dao;
 
-import com.example.studyswap.Connection.ConnectionDB;
+import com.example.studyswap.connection.ConnectionDB;
 import com.example.studyswap.dao.queries.RetrieveQueries;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.exception.UserNotFoundException;
@@ -27,7 +27,7 @@ public class LoginDAOJDBC implements LoginDAO {
 
             //l'utente non è stato trovato
             if(!resultSet.isBeforeFirst()){
-                System.out.println("user not found with the provided email: " + email);
+                Printer.printMessage("user not found with the provided email: " + email);
                 throw new UserNotFoundException();
             }
 

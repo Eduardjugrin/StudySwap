@@ -4,7 +4,7 @@ import com.example.studyswap.Main;
 import com.example.studyswap.appcontroller.NoteUploadController;
 import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.bean.SellerBean;
-import com.example.studyswap.engineering.Singleton.Session;
+import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.engineering.observer.ShowExceptionSupport;
 import com.example.studyswap.exception.DuplicateNoteException;
 import com.example.studyswap.exception.NotFoundException;

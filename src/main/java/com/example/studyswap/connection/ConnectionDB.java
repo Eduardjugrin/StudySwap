@@ -1,4 +1,4 @@
-package com.example.studyswap.Connection;
+package com.example.studyswap.connection;
 
 import com.example.studyswap.engineering.observer.Printer;
 

@@ -3,7 +3,7 @@ package com.example.studyswap.graphiccontroller;
 import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.Main;
 import com.example.studyswap.bean.NoteBean;
-import com.example.studyswap.engineering.Singleton.Session;
+import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ public class BuyerHomepageGUIController {
     @FXML
     private Label welcomeLabel;
 
-    private String PURCHASED_NOTES = "/fxml/purchasedNotes.fxml";
+    private final String PURCHASED_NOTES = "/fxml/purchasedNotes.fxml";
 
     public void initialize() throws IOException, NotFoundException {
         welcomeLabel.setText("Welcome in your Homepage " + Session.getCurrentSession().getBuyerBean().getFirstName());

@@ -1,6 +1,6 @@
 package com.example.studyswap.dao;
 
-import com.example.studyswap.Connection.ConnectionDB;
+import com.example.studyswap.connection.ConnectionDB;
 import com.example.studyswap.dao.queries.RetrieveQueries;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.exception.DuplicateNoteException;
@@ -54,7 +54,7 @@ public class NoteDAOJDBC extends NoteDAO {
     }
 
 
-    public static List<Note> getAllNotes() throws NotFoundException {
+    public static List<Note> getAllNotes() throws NotFoundException{
 
         List<Note> noteList = new ArrayList<>();
         Connection connection;
@@ -78,7 +78,7 @@ public class NoteDAOJDBC extends NoteDAO {
             } while (resultSet.next());
 
 
-        } catch (SQLException e) {
+        } catch (SQLException | NotFoundException e) {
             Printer.printError(e.getMessage());
         } finally {
             try {
@@ -92,7 +92,7 @@ public class NoteDAOJDBC extends NoteDAO {
         return noteList;
     }
 
-    public static List<Note> getAllNotesBySeller(String sellerEmail) throws NotFoundException {
+    public static List<Note> getAllNotesBySeller(String sellerEmail) {
         Connection connection;
         List<Note> notesByAuthorList = new ArrayList<>();
         Note note = null;
@@ -104,7 +104,7 @@ public class NoteDAOJDBC extends NoteDAO {
             resultSet = RetrieveQueries.retrieveNotesBySeller(connection, sellerEmail);
 
             if (!resultSet.first()) {
-                return null;
+                return notesByAuthorList;
             }
 
             resultSet.first();

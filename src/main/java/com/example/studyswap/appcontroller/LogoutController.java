@@ -1,6 +1,6 @@
 package com.example.studyswap.appcontroller;
 
-import com.example.studyswap.engineering.Singleton.Session;
+import com.example.studyswap.engineering.singleton.Session;
 
 public class LogoutController {
     public void logout(){
