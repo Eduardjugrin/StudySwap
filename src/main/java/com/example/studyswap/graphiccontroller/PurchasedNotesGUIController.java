@@ -36,7 +36,7 @@ public class PurchasedNotesGUIController {
 
         for (Note note : allNotes) {
 
-            NoteBean noteBean = new NoteBean(note.getFileID(), note.getFileName(), note.getExtension(), note.getContent(), note.getUploaderEmail(), note.getPrice(), note.getSubject(), note.getAuthor());
+            NoteBean noteBean = new NoteBean(note.getFileID(), note.getFileName(), note.getExtension(), note.getContent(), note.getPrice(), note.getSubject(), note.getAuthor());
             // Creazione dell'elemento elemento visuale per l'appunto
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/fxml/purchasedNoteItem.fxml"));

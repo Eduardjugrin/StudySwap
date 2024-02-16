@@ -11,12 +11,11 @@ public class Note {
     private String author;
 
     //necessario per le operazioni di recupero dal db
-    public Note(int fileId, String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
+    public Note(int fileId, String fileName, String extension, byte[] content, double price, String subject, String author){
         this.fileId = fileId;
         this.fileName = fileName;
         this.extension = extension;
         this.content = content;
-        this.uploaderEmail = uploaderEmail;
         this.price = price;
         this.subject = subject;
         this.author = author;

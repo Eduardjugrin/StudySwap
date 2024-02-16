@@ -10,12 +10,11 @@ public class NoteBean {
     private String subject;
     private String author;
 
-    public NoteBean(int fileId, String fileName, String extension, byte[] content, String uploaderEmail, double price, String subject, String author){
+    public NoteBean(int fileId, String fileName, String extension, byte[] content, double price, String subject, String author){
         this.fileId =fileId;
         this.fileName = fileName;
         this.extension = extension;
         this.content = content;
-        this.uploaderEmail = uploaderEmail;
         this.price = price;
         this.subject = subject;
         this.author = author;
@@ -39,6 +38,7 @@ public class NoteBean {
         this.price = price;
         this.subject = subject;
     }
+
 
     public NoteBean(int id){
         this.fileId = id;

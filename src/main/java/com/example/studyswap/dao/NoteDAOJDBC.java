@@ -140,7 +140,7 @@ public class NoteDAOJDBC extends NoteDAO {
         String subject = resultSet.getString(SUBJECT);
         String author = resultSet.getString(FIRST_NAME) + " " + resultSet.getString(LAST_NAME);
 
-        return new Note(id, fileName, extension, content, uploaderEmail, price, subject, author);
+        return new Note(id, fileName, extension, content, price, subject, author);
     }
 
     public static Note setSellerFileData(ResultSet resultSet) throws SQLException {
@@ -203,26 +203,28 @@ public class NoteDAOJDBC extends NoteDAO {
 
     public static boolean isNotePurchased(String buyerEmail, int fileId) {
         boolean isPurchased;
-
         Connection connection;
         try {
             connection = ConnectionDB.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM purchased WHERE buyerEmail = ? AND fileId = ? ");
-            preparedStatement.setString(1, buyerEmail);
-            preparedStatement.setInt(2, fileId);
+            try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM purchased WHERE buyerEmail = ? AND fileId = ? ")) {
+                preparedStatement.setString(1, buyerEmail);
+                preparedStatement.setInt(2, fileId);
 
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                isPurchased = resultSet.next();
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    isPurchased = resultSet.next();
+                }
+
             }
-
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
             return false;
         }
         return isPurchased;
-
     }
+
+
 
 
     public List<Note> getPurchasedNotes(String buyerEmail) {

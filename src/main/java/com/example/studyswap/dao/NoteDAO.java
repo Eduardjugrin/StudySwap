@@ -68,6 +68,6 @@ public abstract class NoteDAO {
         String subject = resultSet.getString(SUBJECT);
         String author = resultSet.getString(FIRST_NAME) + " " + resultSet.getString(LAST_NAME);
 
-        return new Note(id, fileName, extension, content, uploaderEmail, price, subject, author);
+        return new Note(id, fileName, extension, content, price, subject, author);
     }
 }
