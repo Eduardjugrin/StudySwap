@@ -1,7 +1,6 @@
 package com.example.studyswap.graphiccontroller.cli;
 
-import com.example.studyswap.DAO.NoteDAOJDBC;
-import com.example.studyswap.appcontroller.LogoutController;
+import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.engineering.Singleton.Session;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.exception.CommandErrorException;

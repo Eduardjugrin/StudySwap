@@ -1,7 +1,7 @@
 package com.example.studyswap.engineering.factory;
 
-import com.example.studyswap.DAO.LoginDAO;
-import com.example.studyswap.DAO.LoginDAOJDBC;
+import com.example.studyswap.dao.LoginDAO;
+import com.example.studyswap.dao.LoginDAOJDBC;
 
 //factory per creare istanze di oggetti LoginDAO
 public class LoginDAOFactory {

@@ -1,8 +1,7 @@
 package com.example.studyswap.engineering.factory;
 
-import com.example.studyswap.DAO.NoteDAO;
-import com.example.studyswap.DAO.NoteDAOCSV;
-import com.example.studyswap.DAO.NoteDAOJDBC;
+import com.example.studyswap.dao.NoteDAO;
+import com.example.studyswap.dao.NoteDAOCSV;
 
 public class NoteDAOFactory {
 

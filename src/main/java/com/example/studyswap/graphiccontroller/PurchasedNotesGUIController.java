@@ -1,10 +1,8 @@
 package com.example.studyswap.graphiccontroller;
 
-import com.example.studyswap.DAO.NoteDAOJDBC;
 import com.example.studyswap.Main;
 import com.example.studyswap.appcontroller.PurchasedController;
 import com.example.studyswap.bean.NoteBean;
-import com.example.studyswap.engineering.Singleton.Session;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
 import javafx.fxml.FXML;

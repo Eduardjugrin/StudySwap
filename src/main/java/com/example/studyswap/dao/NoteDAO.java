@@ -1,14 +1,10 @@
-package com.example.studyswap.DAO;
+package com.example.studyswap.dao;
 
 
 import com.example.studyswap.Connection.ConnectionDB;
-import com.example.studyswap.DAO.queries.RetrieveQueries;
 import com.example.studyswap.engineering.observer.Printer;
-import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
-import com.mysql.cj.jdbc.exceptions.NotUpdatable;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

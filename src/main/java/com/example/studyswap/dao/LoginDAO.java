@@ -1,4 +1,4 @@
-package com.example.studyswap.DAO;
+package com.example.studyswap.dao;
 
 import com.example.studyswap.exception.UserNotFoundException;
 import com.example.studyswap.model.User;

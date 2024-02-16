@@ -1,7 +1,7 @@
-package com.example.studyswap.DAO;
+package com.example.studyswap.dao;
 
 import com.example.studyswap.Connection.ConnectionDB;
-import com.example.studyswap.DAO.queries.RetrieveQueries;
+import com.example.studyswap.dao.queries.RetrieveQueries;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Seller;

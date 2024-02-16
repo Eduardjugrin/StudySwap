@@ -1,17 +1,12 @@
-package com.example.studyswap.DAO;
+package com.example.studyswap.dao;
 
-import com.example.studyswap.DAO.NoteDAO;
 import com.example.studyswap.engineering.observer.Printer;
-import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

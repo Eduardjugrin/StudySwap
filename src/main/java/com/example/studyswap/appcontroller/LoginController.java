@@ -1,8 +1,8 @@
 package com.example.studyswap.appcontroller;
 
-import com.example.studyswap.DAO.BuyerDAO;
-import com.example.studyswap.DAO.LoginDAO;
-import com.example.studyswap.DAO.SellerDAO;
+import com.example.studyswap.dao.BuyerDAO;
+import com.example.studyswap.dao.LoginDAO;
+import com.example.studyswap.dao.SellerDAO;
 import com.example.studyswap.bean.BuyerBean;
 import com.example.studyswap.bean.LoginBean;
 import com.example.studyswap.bean.SellerBean;

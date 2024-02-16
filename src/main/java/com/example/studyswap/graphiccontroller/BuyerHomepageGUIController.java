@@ -1,6 +1,6 @@
 package com.example.studyswap.graphiccontroller;
 
-import com.example.studyswap.DAO.NoteDAOJDBC;
+import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.Main;
 import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.engineering.Singleton.Session;

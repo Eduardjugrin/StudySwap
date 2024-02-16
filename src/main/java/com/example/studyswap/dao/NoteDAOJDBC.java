@@ -1,7 +1,7 @@
-package com.example.studyswap.DAO;
+package com.example.studyswap.dao;
 
 import com.example.studyswap.Connection.ConnectionDB;
-import com.example.studyswap.DAO.queries.RetrieveQueries;
+import com.example.studyswap.dao.queries.RetrieveQueries;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.exception.DuplicateNoteException;
 import com.example.studyswap.exception.NotFoundException;
@@ -204,11 +204,10 @@ public class NoteDAOJDBC extends NoteDAO {
     public static boolean isNotePurchased(String buyerEmail, int fileId) {
         boolean isPurchased;
 
-        try (Connection connection = ConnectionDB.getConnection();) {
+        try (Connection connection = ConnectionDB.getConnection()) {
 
-            String sql = "SELECT * FROM purchased WHERE buyerEmail = ? AND fileId = ? ";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM purchased WHERE buyerEmail = ? AND fileId = ? ");
             preparedStatement.setString(1, buyerEmail);
             preparedStatement.setInt(2, fileId);
 
@@ -248,7 +247,6 @@ public class NoteDAOJDBC extends NoteDAO {
                 purchasedNoteList.add(note);
             } while (resultSet.next());
 
-            resultSet.close();
         } catch (SQLException | NotFoundException e) {
             Printer.printError(e.getMessage());
         } finally {

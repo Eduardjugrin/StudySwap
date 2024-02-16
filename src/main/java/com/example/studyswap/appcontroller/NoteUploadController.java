@@ -1,6 +1,6 @@
 package com.example.studyswap.appcontroller;
 
-import com.example.studyswap.DAO.NoteDAOJDBC;
+import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.exception.DuplicateNoteException;
 import com.example.studyswap.model.Note;

@@ -1,4 +1,4 @@
-import com.example.studyswap.DAO.LoginDAO;
+import com.example.studyswap.dao.LoginDAO;
 import com.example.studyswap.engineering.factory.LoginDAOFactory;
 import com.example.studyswap.exception.UserNotFoundException;
 import com.example.studyswap.model.User;

@@ -1,6 +1,4 @@
-package com.example.studyswap.DAO.queries;
-
-import javafx.scene.control.TableView;
+package com.example.studyswap.dao.queries;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-import com.example.studyswap.DAO.NoteDAOJDBC;
+import com.example.studyswap.dao.NoteDAOJDBC;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
