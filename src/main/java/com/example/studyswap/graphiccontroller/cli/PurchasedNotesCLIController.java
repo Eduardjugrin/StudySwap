@@ -7,7 +7,6 @@ import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.engineering.observer.ShowExceptionSupport;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
-import com.example.studyswap.model.Review;
 import com.example.studyswap.viewcli.PurchasedNotesViewCLI;
 
 import java.awt.*;
@@ -88,11 +87,12 @@ public class PurchasedNotesCLIController {
             Printer.printMessage(e.getMessage());
         }
 
-        if(success){
+        if (success) {
             Printer.printMessage("Notes uploaded successfully!");
-        }else{
+        } else {
             ShowExceptionSupport.showExcpetionCLI("Notes not uploaded successfully");
         }
+
     }
 
     public static int getI() {

@@ -42,9 +42,8 @@ public class PurchasedNotesViewCLI {
                         ShowExceptionSupport.showException(e.getMessage());
                     }
                 }
-                case LEAVE_REVIEW -> {
-                    purchasedNotesCLIController.leaveReview(choice);
-                }
+                case LEAVE_REVIEW -> purchasedNotesCLIController.leaveReview(choice);
+                default -> this.run();
             }
         }
     }
