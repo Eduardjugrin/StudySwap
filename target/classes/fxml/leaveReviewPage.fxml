@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studyswap.graphiccontroller.LeaveReviewGUIController">
+    <stylesheets>
+        <URL value="@../values/style.css" />
+    </stylesheets>
+    <top>
+        <AnchorPane prefHeight="78.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" layoutX="403.0" layoutY="11.0" text="Leave a review">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="toPreviousScreen" fitHeight="52.0" fitWidth="52.0" layoutX="14.0" layoutY="24.0" onMouseClicked="#toPreviousScreen" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+                    <image>
+                        <Image url="@../img/backIcon.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+                <ImageView fx:id="logoutIcon" fitHeight="52.0" fitWidth="52.0" layoutX="920.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+                    <image>
+                        <Image url="@../img/logoutIcon.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primaryColor" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER_LEFT" layoutX="140.0" layoutY="27" prefHeight="345.0" prefWidth="750.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="654.0">
+                            <children>
+                                <Label text="Type your review here:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Pane prefHeight="64.0" prefWidth="123.0" />
+                                <TextField fx:id="review" layoutX="31.0" layoutY="71.0" prefWidth="250.0">
+                                    <cursor>
+                                        <Cursor fx:constant="TEXT" />
+                                    </cursor></TextField>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="654.0">
+                            <Label text="Price">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Pane prefHeight="32.0" prefWidth="254.0" />
+                            <Spinner fx:id="voteSpinner" editable="true" prefHeight="26" prefWidth="80">
+                                <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                </cursor></Spinner>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </center>
+    <bottom>
+        <AnchorPane prefHeight="78.0" prefWidth="1000.0">
+            <Button fx:id="submitButton" alignment="CENTER" layoutX="390.0" layoutY="17.0" mnemonicParsing="false" onAction="#submitReview" prefHeight="45.0" prefWidth="221.0" text="Submit">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor></Button>
+        </AnchorPane>
+    </bottom>
+</BorderPane>
