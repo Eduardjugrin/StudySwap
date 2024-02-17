@@ -69,7 +69,7 @@ public class PurchasedNoteItemGUIController {
     }
 
     public void leaveReview() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/leaveReviewPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LEAVE_REVIEW"));
         Parent root = loader.load();
         LeaveReviewGUIController leaveReviewGUIController = loader.getController();
         leaveReviewGUIController.setNoteBean(noteBean); // Passa il bean NoteBean a LeaveReviewGUIController

@@ -15,6 +15,9 @@ public class ReviewDAO {
     private static final String COMMENT = "comment";
     private static final String TIME_STAMP = "created_at";
 
+    private ReviewDAO(){
+
+    }
     public static Boolean  addReview(Review review, int fileId){
         Connection connection;
         boolean success = false;
