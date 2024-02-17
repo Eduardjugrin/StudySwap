@@ -2,6 +2,7 @@ package com.example.studyswap.viewcli;
 
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.engineering.observer.ShowExceptionSupport;
+import com.example.studyswap.exception.CommandErrorException;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.graphiccontroller.cli.PurchasedNotesCLIController;
 
@@ -18,7 +19,7 @@ public class PurchasedNotesViewCLI {
         this.purchasedNotesCLIController = purchasedNotesCLIController;
     }
 
-    public void run() throws SQLException, NotFoundException {
+    public void run() throws SQLException, NotFoundException, CommandErrorException {
         Printer.printMessage("-------YOUR PURCHASED NOTES--------");
 
         purchasedNotesCLIController.showPurchasedNotes();
@@ -43,7 +44,7 @@ public class PurchasedNotesViewCLI {
                     }
                 }
                 case LEAVE_REVIEW -> purchasedNotesCLIController.leaveReview(choice);
-                default -> this.run();
+                default -> throw new CommandErrorException();
             }
         }
     }

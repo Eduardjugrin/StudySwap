@@ -5,6 +5,7 @@ import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.bean.ReviewBean;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.engineering.observer.ShowExceptionSupport;
+import com.example.studyswap.exception.CommandErrorException;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
 import com.example.studyswap.viewcli.PurchasedNotesViewCLI;
@@ -23,7 +24,7 @@ public class PurchasedNotesCLIController {
     private NoteBean noteBean = null;
 
     private static int i;
-    public void start() throws NotFoundException, SQLException {
+    public void start() throws NotFoundException, SQLException, CommandErrorException {
         setI(1);
 
         this.purchasedNotesViewCLI = new PurchasedNotesViewCLI(this);
@@ -67,7 +68,7 @@ public class PurchasedNotesCLIController {
     public void leaveReview(int choice){
         noteBean = new NoteBean(purchasedNotes.get(choice).getFileID(), purchasedNotes.get(choice).getFileName(), purchasedNotes.get(choice).getExtension(), purchasedNotes.get(choice).getContent(), purchasedNotes.get(choice).getPrice(), purchasedNotes.get(choice).getSubject(), purchasedNotes.get(choice).getAuthor());
 
-        Boolean success = false;
+        boolean success = false;
 
         Scanner scanner = new Scanner(System.in);
 
