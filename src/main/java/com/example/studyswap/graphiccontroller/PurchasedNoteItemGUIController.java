@@ -1,9 +1,14 @@
 package com.example.studyswap.graphiccontroller;
 
+import com.example.studyswap.Main;
+import com.example.studyswap.appcontroller.PurchasedController;
 import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.engineering.observer.ShowExceptionSupport;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 import java.awt.*;
@@ -13,8 +18,10 @@ import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
 import java.nio.file.*;
 import java.security.Security;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -32,6 +39,7 @@ public class PurchasedNoteItemGUIController {
 
 
     private static final String NOT_IMPLEMENTED = "Not implemented yet";
+    private static final String LEAVE_REVIEW = "/fxml/leaveReviewPage.fxml";
 
     public void setData(NoteBean setNote) {
         noteTitleLabel.setText(String.valueOf(setNote.getFileName()));
@@ -60,9 +68,22 @@ public class PurchasedNoteItemGUIController {
         this.noteBean = noteBean;
     }
 
-    public void leaveReview() {
-        ShowExceptionSupport.showException(NOT_IMPLEMENTED);
+    public void leaveReview() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/leaveReviewPage.fxml"));
+        Parent root = loader.load();
+        LeaveReviewGUIController leaveReviewGUIController = loader.getController();
+        leaveReviewGUIController.setNoteBean(noteBean); // Passa il bean NoteBean a LeaveReviewGUIController
+
+        Stage stage = Main.getStage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
+    public  NoteBean getNoteBean(){
+        return noteBean;
+    }
+
 
 }
 

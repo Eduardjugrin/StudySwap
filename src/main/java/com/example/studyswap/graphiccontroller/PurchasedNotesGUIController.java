@@ -3,6 +3,7 @@ package com.example.studyswap.graphiccontroller;
 import com.example.studyswap.Main;
 import com.example.studyswap.appcontroller.PurchasedController;
 import com.example.studyswap.bean.NoteBean;
+import com.example.studyswap.engineering.observer.ShowExceptionSupport;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
 import javafx.fxml.FXML;
@@ -30,39 +31,43 @@ public class PurchasedNotesGUIController {
         PurchasedController purchasedController = new PurchasedController();
         List<Note> allNotes = purchasedController.getPurchasedNotes();
 
-        // Popola la GridPane con i dati degli appunti
-        int row = 1;
-        int col = 0;
+        if (allNotes == null) {
+            ShowExceptionSupport.showException("no notes purchased  yet");
+        }else {
+            // Popola la GridPane con i dati degli appunti
+            int row = 1;
+            int col = 0;
 
-        for (Note note : allNotes) {
+            for (Note note : allNotes) {
 
-            NoteBean noteBean = new NoteBean(note.getFileID(), note.getFileName(), note.getExtension(), note.getContent(), note.getPrice(), note.getSubject(), note.getAuthor());
-            // Creazione dell'elemento elemento visuale per l'appunto
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource("/fxml/purchasedNoteItem.fxml"));
-            AnchorPane anchorPane = fxmlLoader.load();
+                NoteBean noteBean = new NoteBean(note.getFileID(), note.getFileName(), note.getExtension(), note.getContent(), note.getPrice(), note.getSubject(), note.getAuthor());
+                // Creazione dell'elemento elemento visuale per l'appunto
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(Main.class.getResource("/fxml/purchasedNoteItem.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
-            PurchasedNoteItemGUIController purchasedNoteItemGUIController = fxmlLoader.getController();
-            purchasedNoteItemGUIController.setData(noteBean);
-            purchasedNoteItemGUIController.setNoteBean(noteBean);
+                PurchasedNoteItemGUIController purchasedNoteItemGUIController = fxmlLoader.getController();
+                purchasedNoteItemGUIController.setData(noteBean);
+                purchasedNoteItemGUIController.setNoteBean(noteBean);
 
-            // Incrementa la riga  per posizionare il prossimo elemento
-            if (col == 1) {
-                col = 0;
-                row++;
+                // Incrementa la riga  per posizionare il prossimo elemento
+                if (col == 1) {
+                    col = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, col++, row);
+
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
             }
-
-            grid.add(anchorPane, col++, row);
-
-
-            grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-            grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-            grid.setMaxHeight(Region.USE_PREF_SIZE);
-            grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-            grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-            GridPane.setMargin(anchorPane, new Insets(10));
         }
     }
 

@@ -43,12 +43,12 @@ public class BuyerNoteItemGUIController {
             boolean purchaseSuccessful = PurchaseController.buyNote(noteBean);
 
             if (isAlreadyPurchased) {
-                ShowExceptionSupport.showExcpetionCLI("You Have already bought these notes");
+                ShowExceptionSupport.showException("You Have already bought these notes");
             } else if (purchaseSuccessful) {
-                Printer.printMessage("Notes purchased successfully");
+                ShowExceptionSupport.showException("Notes purchased successfully");
             }
         } catch (Exception e) {
-            ShowExceptionSupport.showExcpetionCLI("Something went wrong.\n Try again.");
+            ShowExceptionSupport.showException("Something went wrong.\n Try again.");
         }
 
     }

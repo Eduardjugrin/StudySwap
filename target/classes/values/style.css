@@ -109,6 +109,16 @@
     -fx-min-width: 5px;
 }
 
+#voteSpinner {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #28a745;
+
+    -fx-text-inner-color: #000000;
+    -fx-font-size: 14;
+}
+
 #grid{
     -fx-background-color: #f4f0d2;
 }
