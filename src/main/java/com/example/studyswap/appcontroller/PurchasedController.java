@@ -38,7 +38,7 @@ public class PurchasedController {
         try{
             ReviewDAO.addReview(review, noteBean.getFileId());
             success = true;
-        }catch(Exception e){
+        }catch(IllegalArgumentException e){
             Printer.printError(e.getMessage());
         }
         return success;

@@ -2,9 +2,12 @@ package com.example.studyswap.graphiccontroller.cli;
 
 import com.example.studyswap.appcontroller.PurchasedController;
 import com.example.studyswap.bean.NoteBean;
+import com.example.studyswap.bean.ReviewBean;
 import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.observer.ShowExceptionSupport;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.model.Note;
+import com.example.studyswap.model.Review;
 import com.example.studyswap.viewcli.PurchasedNotesViewCLI;
 
 import java.awt.*;
@@ -30,10 +33,10 @@ public class PurchasedNotesCLIController {
 
     public void showPurchasedNotes(){
         PurchasedController purchasedController = new PurchasedController();
-        List<Note> allNotes = purchasedController.getPurchasedNotes();
+        purchasedNotes = purchasedController.getPurchasedNotes();
 
 
-        for (Note note : allNotes){
+        for (Note note : purchasedNotes){
             Printer.printMessage(i + "| Name: " + note.getFileName() + "| Subject: " + note.getSubject() + "Author: " + note.getAuthor());
             Printer.printMessage("--------------------------------------------------------------------");
             increaseIndex();
@@ -41,7 +44,6 @@ public class PurchasedNotesCLIController {
     }
 
     public int askForChoice(){
-        Printer.printMessage("Select the notes you want to view");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
@@ -60,6 +62,36 @@ public class PurchasedNotesCLIController {
         }
         catch (IOException | SecurityException e) {
             Printer.printError(e.getMessage());
+        }
+    }
+
+    public void leaveReview(int choice){
+        noteBean = new NoteBean(purchasedNotes.get(choice).getFileID(), purchasedNotes.get(choice).getFileName(), purchasedNotes.get(choice).getExtension(), purchasedNotes.get(choice).getContent(), purchasedNotes.get(choice).getPrice(), purchasedNotes.get(choice).getSubject(), purchasedNotes.get(choice).getAuthor());
+
+        Boolean success = false;
+
+        Scanner scanner = new Scanner(System.in);
+
+        Printer.printMessage("Type your review");
+        String comment = scanner.nextLine();
+
+        Printer.printMessage("Give a rating (1-5)");
+        int rating = scanner.nextInt();
+
+        ReviewBean reviewBean = new ReviewBean(comment, rating);
+        try{
+            PurchasedController purchasedController = new PurchasedController();
+            purchasedController.setNoteBean(noteBean);
+            success = purchasedController.leaveReview(reviewBean);
+
+        }catch(IllegalArgumentException e){
+            Printer.printMessage(e.getMessage());
+        }
+
+        if(success){
+            Printer.printMessage("Notes uploaded successfully!");
+        }else{
+            ShowExceptionSupport.showExcpetionCLI("Notes not uploaded successfully");
         }
     }
 
