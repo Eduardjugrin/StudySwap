@@ -34,7 +34,7 @@ public class PurchasedController {
 
     public boolean leaveReview(ReviewBean reviewBean){
         Review review = new Review(reviewBean.getComment(), reviewBean.getRating());
-        Boolean success = false;
+        boolean success = false;
         try{
             ReviewDAO.addReview(review, noteBean.getFileId());
             success = true;
