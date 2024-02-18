@@ -50,7 +50,7 @@ public class BuyerDAO {
         return buyer;
     }
 
-    public static Buyer setBuyerData(ResultSet resultSet) throws SQLException{
+    private static Buyer setBuyerData(ResultSet resultSet) throws SQLException{
         String firstName = resultSet.getString(FIRST_NAME);
         String lastName = resultSet.getString(LAST_NAME);
         String email = resultSet.getString(EMAIL);

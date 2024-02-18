@@ -89,9 +89,9 @@ public class PurchasedNotesCLIController {
         }
 
         if (success) {
-            Printer.printMessage("Notes uploaded successfully!");
+            Printer.printMessage("Review uploaded successfully!");
         } else {
-            ShowExceptionSupport.showExcpetionCLI("Notes not uploaded successfully");
+            ShowExceptionSupport.showExcpetionCLI("Review not uploaded successfully");
         }
 
     }
