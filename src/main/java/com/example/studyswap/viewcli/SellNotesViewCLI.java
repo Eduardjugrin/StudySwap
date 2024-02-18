@@ -1,15 +1,9 @@
 package com.example.studyswap.viewcli;
 
-import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.Printer;
 import com.example.studyswap.graphiccontroller.cli.SellNotesCLIController;
-import com.example.studyswap.graphiccontroller.cli.SellerCLIController;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class SellNotesViewCLI {
 

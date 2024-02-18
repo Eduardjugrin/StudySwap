@@ -4,7 +4,7 @@ import com.example.studyswap.bean.NoteBean;
 import com.example.studyswap.bean.ReviewBean;
 import com.example.studyswap.dao.NoteDAO;
 import com.example.studyswap.dao.ReviewDAO;
-import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.Printer;
 import com.example.studyswap.engineering.singleton.Session;
 import com.example.studyswap.engineering.factory.NoteDAOFactory;
 import com.example.studyswap.model.Note;

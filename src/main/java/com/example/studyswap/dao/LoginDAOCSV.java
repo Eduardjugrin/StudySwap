@@ -3,7 +3,7 @@ package com.example.studyswap.dao;
 import com.example.studyswap.exception.NotFoundException;
 import com.example.studyswap.exception.UserNotFoundException;
 import com.example.studyswap.model.User;
-import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.Printer;
 
 
 import java.io.BufferedReader;

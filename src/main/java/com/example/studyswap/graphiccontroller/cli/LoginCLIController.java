@@ -2,7 +2,7 @@ package com.example.studyswap.graphiccontroller.cli;
 
 import com.example.studyswap.appcontroller.LoginController;
 import com.example.studyswap.bean.LoginBean;
-import com.example.studyswap.engineering.observer.ShowExceptionSupport;
+import com.example.studyswap.engineering.ShowExceptionSupport;
 import com.example.studyswap.exception.*;
 import com.example.studyswap.viewcli.LoginViewCLI;
 

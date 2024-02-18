@@ -3,14 +3,11 @@ package com.example.studyswap.graphiccontroller;
 import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.appcontroller.PurchaseController;
 import com.example.studyswap.bean.NoteBean;
-import com.example.studyswap.engineering.observer.Printer;
 import com.example.studyswap.engineering.singleton.Session;
-import com.example.studyswap.engineering.observer.ShowExceptionSupport;
+import com.example.studyswap.engineering.ShowExceptionSupport;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import java.sql.SQLException;
 
 public class BuyerNoteItemGUIController {
     @FXML

@@ -1,7 +1,7 @@
 package com.example.studyswap;
 
 import com.example.studyswap.connection.ConnectionDB;
-import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.Printer;
 import com.example.studyswap.graphiccontroller.cli.LoginCLIController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

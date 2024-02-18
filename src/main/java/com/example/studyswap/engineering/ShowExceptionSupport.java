@@ -1,6 +1,7 @@
-package com.example.studyswap.engineering.observer;
+package com.example.studyswap.engineering;
 
 import com.example.studyswap.Main;
+import com.example.studyswap.engineering.Printer;
 import com.example.studyswap.engineering.ScannerSupport;
 import com.example.studyswap.graphiccontroller.MessageBoxGUIController;
 import javafx.fxml.FXMLLoader;

@@ -1,13 +1,11 @@
 package com.example.studyswap.graphiccontroller;
 
 import com.example.studyswap.bean.NoteBean;
-import com.example.studyswap.engineering.observer.ShowExceptionSupport;
+import com.example.studyswap.engineering.ShowExceptionSupport;
 import com.example.studyswap.model.Note;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import java.io.IOException;
 
 public class SellerNoteItemGUIController {
     @FXML

@@ -1,10 +1,8 @@
 package com.example.studyswap.graphiccontroller;
 
 import com.example.studyswap.Main;
-import com.example.studyswap.appcontroller.PurchasedController;
 import com.example.studyswap.bean.NoteBean;
-import com.example.studyswap.engineering.observer.Printer;
-import com.example.studyswap.engineering.observer.ShowExceptionSupport;
+import com.example.studyswap.engineering.Printer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,17 +11,9 @@ import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.io.*;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileLock;
-import java.nio.channels.OverlappingFileLockException;
 import java.nio.file.*;
-import java.security.Security;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import javafx.stage.Stage;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 public class PurchasedNoteItemGUIController {
 

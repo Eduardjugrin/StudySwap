@@ -2,7 +2,7 @@ package com.example.studyswap.graphiccontroller.cli;
 
 import com.example.studyswap.dao.NoteDAOJDBC;
 import com.example.studyswap.engineering.singleton.Session;
-import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.Printer;
 import com.example.studyswap.exception.CommandErrorException;
 import com.example.studyswap.exception.NotImplementedException;
 import com.example.studyswap.model.Note;

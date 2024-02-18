@@ -1,7 +1,7 @@
 package com.example.studyswap.dao;
 
 import com.example.studyswap.connection.ConnectionDB;
-import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.Printer;
 import com.example.studyswap.model.Review;
 
 import java.sql.Connection;

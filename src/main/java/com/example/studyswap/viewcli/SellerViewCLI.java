@@ -1,6 +1,6 @@
 package com.example.studyswap.viewcli;
 
-import com.example.studyswap.engineering.observer.Printer;
+import com.example.studyswap.engineering.Printer;
 import com.example.studyswap.exception.CommandErrorException;
 import com.example.studyswap.graphiccontroller.cli.SellerCLIController;
 
