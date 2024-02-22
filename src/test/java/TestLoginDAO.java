@@ -16,7 +16,7 @@ class TestLoginDAO {
         LoginDAO loginDAO = LoginDAOFactory.getInstance().createLoginDAO();
         User user = loginDAO.checkUser("eduard@sample.com", "test456");
 
-        // Il test ha successo in quanto restituisce il ruolo 2, corrispondente al passeggero
+        // Il test ha successo in quanto restituisce il ruolo 1, corrispondente all'acquirente
         assertEquals(1, user.getRole());
     }
 }
